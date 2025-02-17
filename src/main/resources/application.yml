@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    # 数据库1配置
+    primary:
+      jdbc-url: jdbc:mysql://rm-2zeusjfev51pejx51qogd.mysql.rds.aliyuncs.com:3306/xiaodianjia
+      username: gdaliroot
+      password: Xiaodianjia1122
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
+    # 数据库2配置
+    secondary:
+      jdbc-url: jdbc:mysql://rm-2ze1xio717ak28796do.mysql.rds.aliyuncs.com:3306/meijia_com
+      username: meijia_online
+      password: Bj-Mj-20250115
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
+
+  # Mybatis Plus 配置
+  mybatis-plus:
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    global-config:
+      db-config:
+        logic-delete-value: 1
+        logic-not-delete-value: 0
+logging:
+  level:
+    org:
+      springframework=DEBUG:

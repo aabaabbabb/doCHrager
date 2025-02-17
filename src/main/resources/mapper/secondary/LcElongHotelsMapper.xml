@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.secondary.LcElongHotelsMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.LcElongHotels">
+            <id property="tid" column="tid" />
+            <result property="id" column="id" />
+            <result property="name" column="name" />
+            <result property="address" column="address" />
+            <result property="postalCode" column="postal_code" />
+            <result property="starRate" column="star_rate" />
+            <result property="category" column="category" />
+            <result property="phone" column="phone" />
+            <result property="fax" column="fax" />
+            <result property="establishmentDate" column="establishment_date" />
+            <result property="renovationDate" column="renovation_date" />
+            <result property="groupId" column="group_id" />
+            <result property="brandId" column="brand_id" />
+            <result property="isEconomic" column="is_economic" />
+            <result property="isApartment" column="is_apartment" />
+            <result property="arrivalTime" column="arrival_time" />
+            <result property="departureTime" column="departure_time" />
+            <result property="products" column="products" />
+            <result property="googleLat" column="google_lat" />
+            <result property="googleLng" column="google_lng" />
+            <result property="baiduLat" column="baidu_lat" />
+            <result property="baiduLng" column="baidu_lng" />
+            <result property="cityId" column="city_id" />
+            <result property="cityId2" column="city_id2" />
+            <result property="district" column="district" />
+            <result property="businessZone" column="business_zone" />
+            <result property="businessZone2" column="business_zone2" />
+            <result property="creditCards" column="credit_cards" />
+            <result property="introEditor" column="intro_editor" />
+            <result property="description" column="description" />
+            <result property="airportpickupService" column="airportpickup_service" />
+            <result property="cover" column="cover" />
+            <result property="commentTagList" column="comment_tag_list" />
+            <result property="tagList" column="tag_list" />
+            <result property="facilities" column="facilities" />
+            <result property="serviceRank" column="service_rank" />
+            <result property="facilities2" column="facilities2" />
+            <result property="roomTotalAmount" column="room_total_amount" />
+            <result property="generalAmenities" column="general_amenities" />
+            <result property="roomAmenities" column="room_amenities" />
+            <result property="recreationAmenities" column="recreation_amenities" />
+            <result property="conferenceAmenities" column="conference_amenities" />
+            <result property="diningAmenities" column="dining_amenities" />
+            <result property="nearbyTraffic" column="nearby_traffic" />
+            <result property="traffic" column="traffic" />
+            <result property="surroundings" column="surroundings" />
+            <result property="features" column="features" />
+            <result property="hasCoupon" column="has_coupon" />
+            <result property="review" column="review" />
+            <result property="status" column="status" />
+            <result property="updateTime" column="update_time" />
+            <result property="isGet" column="is_get" />
+            <result property="isTag" column="is_tag" />
+            <result property="isNearby" column="is_nearby" />
+            <result property="isCover" column="is_cover" />
+            <result property="skHotelid" column="sk_hotelid" />
+            <result property="znHotelid" column="zn_hotelid" />
+            <result property="ctrHotelid" column="ctr_hotelid" />
+            <result property="lsid" column="lsid" />
+            <result property="day10" column="day10" />
+            <result property="statusS" column="status_s" />
+            <result property="commentScores" column="comment_scores" />
+            <result property="commentCount" column="comment_count" />
+            <result property="minPrice" column="min_price" />
+            <result property="maxPrice" column="max_price" />
+            <result property="businessZoneName" column="business_zone_name" />
+            <result property="districtName" column="district_name" />
+            <result property="isChina" column="is_china" />
+            <result property="cityName" column="city_name" />
+            <result property="roomtotalamount" column="roomtotalamount" />
+            <result property="hoteltypes" column="hoteltypes" />
+            <result property="up" column="up" />
+            <result property="isMcCooperate" column="is_mc_cooperate" />
+            <result property="mcCooperateTime" column="mc_cooperate_time" />
+            <result property="earningsType1" column="earnings_type1" />
+            <result property="earningsType2" column="earnings_type2" />
+            <result property="validDistance" column="valid_distance" />
+            <result property="deductPercent" column="deduct_percent" />
+            <result property="estatus" column="estatus" />
+            <result property="isupdate" column="isupdate" />
+            <result property="addTime" column="add_time" />
+            <result property="isHezuo" column="is_hezuo" />
+            <result property="hezuoRooms" column="hezuo_rooms" />
+            <result property="isHideInvitecode" column="is_hide_invitecode" />
+            <result property="isAdvantage" column="is_advantage" />
+            <result property="earningsType3" column="earnings_type3" />
+            <result property="earningsType3Enabled" column="earnings_type3_enabled" />
+            <result property="accountMoney" column="account_money" />
+            <result property="commentData" column="comment_data" />
+            <result property="breakfastcount" column="breakfastcount" />
+            <result property="bedtype" column="bedtype" />
+            <result property="windowtype" column="windowtype" />
+            <result property="scenicId" column="scenic_id" />
+            <result property="coverWidth" column="cover_width" />
+            <result property="coverHeight" column="cover_height" />
+            <result property="nearbyTrafficInfos" column="nearby_traffic_infos" />
+            <result property="updatetimes" column="updateTimes" />
+            <result property="offline" column="offline" />
+            <result property="skidOld" column="skid_old" />
+            <result property="parkingLot" column="parking_lot" />
+            <result property="meetingRoom" column="meeting_room" />
+            <result property="parkinfos" column="ParkInfos" />
+            <result property="skOffline" column="sk_offline" />
+            <result property="hasHotelModel" column="has_hotel_model" />
+            <result property="countryid" column="CountryId" />
+            <result property="ctrHotelidOld" column="ctr_hotelid_old" />
+            <result property="advantaged" column="advantaged" />
+            <result property="isElong" column="is_elong" />
+            <result property="isDelete" column="is_delete" />
+            <result property="sjlHotelid" column="sjl_hotelid" />
+            <result property="isPushGaode" column="is_push_gaode" />
+            <result property="instantconfirmation" column="instantConfirmation" />
+            <result property="sjlHotSale" column="sjl_hot_sale" />
+            <result property="sjlMinPrice" column="sjl_min_price" />
+            <result property="sjlMaxPrice" column="sjl_max_price" />
+            <result property="skHotelname" column="sk_hotelName" />
+            <result property="skHoteladdress" column="sk_hotelAddress" />
+            <result property="skHotelphone" column="sk_hotelPhone" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        tid,id,name,address,postal_code,star_rate,
+        category,phone,fax,establishment_date,renovation_date,
+        group_id,brand_id,is_economic,is_apartment,arrival_time,
+        departure_time,products,google_lat,google_lng,baidu_lat,
+        baidu_lng,city_id,city_id2,district,business_zone,
+        business_zone2,credit_cards,intro_editor,description,airportpickup_service,
+        cover,comment_tag_list,tag_list,facilities,service_rank,
+        facilities2,room_total_amount,general_amenities,room_amenities,recreation_amenities,
+        conference_amenities,dining_amenities,nearby_traffic,traffic,surroundings,
+        features,has_coupon,review,status,update_time,
+        is_get,is_tag,is_nearby,is_cover,sk_hotelid,
+        zn_hotelid,ctr_hotelid,lsid,day10,status_s,
+        comment_scores,comment_count,min_price,max_price,business_zone_name,
+        district_name,is_china,city_name,roomtotalamount,hoteltypes,
+        up,is_mc_cooperate,mc_cooperate_time,earnings_type1,earnings_type2,
+        valid_distance,deduct_percent,estatus,isupdate,add_time,
+        is_hezuo,hezuo_rooms,is_hide_invitecode,is_advantage,earnings_type3,
+        earnings_type3_enabled,account_money,comment_data,breakfastcount,bedtype,
+        windowtype,scenic_id,cover_width,cover_height,nearby_traffic_infos,
+        updateTimes,offline,skid_old,parking_lot,meeting_room,
+        ParkInfos,sk_offline,has_hotel_model,CountryId,ctr_hotelid_old,
+        advantaged,is_elong,is_delete,sjl_hotelid,is_push_gaode,
+        instantConfirmation,sjl_hot_sale,sjl_min_price,sjl_max_price,sk_hotelName,
+        sk_hotelAddress,sk_hotelPhone
+    </sql>
+        <select id="selectByIdAndBusinessZone" resultMap="BaseResultMap">
+                select
+                <include refid="Base_Column_List"/>
+                from lc_elong_hotels
+                where
+                id = #{id,jdbcType=VARCHAR}
+                AND business_zone = #{businessZone,jdbcType=VARCHAR}
+        </select>
+</mapper>

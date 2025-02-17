@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.XdHotelMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.XdHotel">
+            <id property="id" column="id" />
+            <result property="eid" column="eid" />
+            <result property="zid" column="zid" />
+            <result property="name" column="name" />
+            <result property="address" column="address" />
+            <result property="cityId" column="city_id" />
+            <result property="tel" column="tel" />
+            <result property="roomTotal" column="room_total" />
+            <result property="contactName" column="contact_name" />
+            <result property="contactPhone" column="contact_phone" />
+            <result property="commissionRate" column="commission_rate" />
+            <result property="isDelete" column="is_delete" />
+            <result property="isElong" column="is_elong" />
+            <result property="status" column="status" />
+            <result property="uid" column="uid" />
+            <result property="invoiceModel" column="invoice_model" />
+            <result property="dltel" column="dltel" />
+            <result property="dlname" column="dlname" />
+            <result property="isOpenXdj" column="is_open_xdj" />
+            <result property="activationTime" column="activation_time" />
+            <result property="gdExtend" column="gd_extend" />
+            <result property="pattern" column="pattern" />
+            <result property="hotelBusinessId" column="hotel_business_id" />
+            <result property="hotelCategoryId" column="hotel_category_id" />
+            <result property="hotelBrandId" column="hotel_brand_id" />
+            <result property="hotelStarId" column="hotel_star_id" />
+            <result property="xcScore" column="xc_score" />
+            <result property="elScore" column="el_score" />
+            <result property="createTime" column="create_time" />
+            <result property="alterTime" column="alter_time" />
+            <result property="token" column="token" />
+            <result property="fax" column="fax" />
+            <result property="expandStatus" column="expand_status" />
+            <result property="receptionPhone" column="reception_phone" />
+            <result property="receptionPhoneAgain" column="reception_phone_again" />
+            <result property="startBusinessTime" column="start_business_time" />
+            <result property="fitmentTime" column="fitment_time" />
+            <result property="gdQrCode" column="gd_qr_code" />
+            <result property="commentTotal" column="comment_total" />
+            <result property="dlid" column="dlid" />
+            <result property="aid" column="aid" />
+            <result property="tmp" column="tmp" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,eid,zid,name,address,city_id,
+        tel,room_total,contact_name,contact_phone,commission_rate,
+        is_delete,is_elong,status,uid,invoice_model,
+        dltel,dlname,is_open_xdj,activation_time,gd_extend,
+        pattern,hotel_business_id,hotel_category_id,hotel_brand_id,hotel_star_id,
+        xc_score,el_score,create_time,alter_time,token,
+        fax,expand_status,reception_phone,reception_phone_again,start_business_time,
+        fitment_time,gd_qr_code,comment_total,dlid,aid,
+        tmp
+    </sql>
+    <select id="selectHotelBusinessIdAndTmpByHotelBusinessIdAndTmp" resultMap="BaseResultMap">
+        select eid,zid,name,address,hotel_business_id, tmp
+        from xd_hotel
+        where hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
+          AND tmp = #{tmp,jdbcType=NUMERIC}
+    </select>
+    <select id="selectEidAndZidAndNameByZidAndTmp" resultMap="BaseResultMap">
+        select eid, zid, name
+        from xd_hotel
+        where zid = #{zid,jdbcType=NUMERIC}
+          AND tmp = #{tmp,jdbcType=NUMERIC}
+        and id > 772496
+    </select>
+    <update id="updateZidByEid">
+        update xd_hotel
+        set zid = #{zid,jdbcType=NUMERIC}
+        where eid = #{eid,jdbcType=NUMERIC}
+    </update>
+    <select id="selectByEid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_hotel
+        where
+        eid = #{eid,jdbcType=NUMERIC}
+    </select>
+    <update id="updateContactNameAndContactPhoneById">
+        update xd_hotel
+        set contact_name  = #{contactName,jdbcType=VARCHAR},
+            contact_phone = #{contactPhone,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+</mapper>
