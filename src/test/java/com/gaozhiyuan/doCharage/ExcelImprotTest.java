@@ -28,18 +28,7 @@ public class ExcelImprotTest {
 
     public List<XdZooTable> readExcel() throws IOException {
 
-//        // 表头列的名称
-//        List<String> headers = Arrays.asList(
-//                "id", "userid", "hide", "userpid", "createtime", "hotelname", "eid", "jingliname",
-//                "jinglitel", "bak", "curuserid", "updatetime", "status", "zid", "timerday", "timer",
-//                "createtimelost", "price", "syncxdj", "ordercount", "ordercanclecount", "ordercountupdate",
-//                "sellstatus", "viewcountuptime", "viewcountorder"
-//        );
-//uuid	userid	userpid	createtime	hotelname	eid	jingliname	jinglitel	curuserid	updatetime	zid	createtimelost	syncxdj	ordercount
-
-
         List<XdZooTable> xdZooTables = xdZooTableMapper.selectByDaoru(0);
-
 
 //        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 //            String line;

@@ -16,6 +16,14 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:
         maximum-pool-size: 10
+    # 数据库3配置
+    tertiary:
+      jdbc-url: jdbc:mysql://gd.tetuijiudian.cn:3306/gaode66
+      username: gaode22
+      password: Redbull2266_
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
 
   # Mybatis Plus 配置
   mybatis-plus:
