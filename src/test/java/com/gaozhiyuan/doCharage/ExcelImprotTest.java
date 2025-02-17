@@ -38,9 +38,8 @@ public class ExcelImprotTest {
 //uuid	userid	userpid	createtime	hotelname	eid	jingliname	jinglitel	curuserid	updatetime	zid	createtimelost	syncxdj	ordercount
 
 
-        List<XdZooTable> xdZooTables = xdZooTableMapper.selectAll();
+        List<XdZooTable> xdZooTables = xdZooTableMapper.selectByDaoru(0);
 
-        System.out.println(xdZooTables);
 
 //        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 //            String line;
@@ -73,16 +72,27 @@ public class ExcelImprotTest {
        //uuid	userid	userpid	createtime	hotelname	eid	jingliname	jinglitel	curuserid	updatetime	zid	createtimelost	syncxdj	ordercount
         for (XdZooTable xdZooTable : excelData){
             List<XdMyClient> XdMyClientList = new ArrayList<>();
+            Integer uuid = xdZooTable.getUuid();
             Integer userid = xdZooTable.getCuruserid();
-            if (userid.equals("0")|| userid.equals("1")|| userid.equals("")){
-                continue;
-            }
             String hotelname = xdZooTable.getHotelname();
             Integer createtime  = xdZooTable.getCreatetime();
             Long eid = xdZooTable.getEid();
-            if (eid ==0){
+            if (userid.equals("0")|| userid.equals("1")|| userid.equals("")){
+                xdZooTableMapper.updateDaoruByUuid(1,uuid);
+                if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                }
+                    count++;
+                    continue;
+            }
+
+            if (eid ==0||eid==101012){
                 System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，进入断点");
                 System.out.println("eid");
+                if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                }
+                count++;
                 continue;
             }
             int elongid = eid.intValue();
@@ -94,6 +104,10 @@ public class ExcelImprotTest {
 
             if (xdMyClientMapper.selectByHid(xdHotel.getId()) != null) {
                 System.out.println("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
+                if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                }
+                count++;
                 continue;
             }
             System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---开始运行");
@@ -112,8 +126,13 @@ public class ExcelImprotTest {
             if (user != null) {
                 XdTeam xdTeam = xdTeamMapper.selectById(user.getTid());
                 if (xdZooTable.getUserpid()==0){
-                    if (user.getCid()==null)
+                    if (user.getCid()==null) {
+                        if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                            System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                        }
+                        count++;
                         continue;
+                    }
                     xdMyClient.setCid(user.getCid());
                 }else{
                     xdMyClient.setCid(cid);
@@ -135,6 +154,10 @@ public class ExcelImprotTest {
                 }
             }else{
                 if (cid==0){
+                    if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                        System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                    }
+                    count++;
                     continue;
                 }
                 xdMyClient.setCid(cid);
@@ -165,9 +188,15 @@ public class ExcelImprotTest {
                 System.out.println("插入完毕");
             } else {
                 System.out.println("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
+                if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                }
+                count++;
                 continue;
             }
-            System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---运行结束，进行下一条");
+            if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
+                System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---运行结束，进行下一条");
+            }
             count++;
         }
 

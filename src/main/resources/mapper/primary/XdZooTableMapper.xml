@@ -19,16 +19,24 @@
             <result property="createtimelost" column="createtimelost" />
             <result property="syncxdj" column="syncxdj" />
             <result property="ordercount" column="ordercount" />
+            <result property="daoru" column="daoru" />
     </resultMap>
 
     <sql id="Base_Column_List">
         uuid,userid,userpid,createtime,hotelname,eid,
         jingliname,jinglitel,curuserid,updatetime,zid,
-        createtimelost,syncxdj,ordercount
+        createtimelost,syncxdj,ordercount,daoru
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectByDaoru" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from xd_zoo_table
+        where
+        daoru = #{daoru,jdbcType=NUMERIC}
     </select>
+    <update id="updateDaoruByUuid">
+        update xd_zoo_table
+        set daoru = #{daoru,jdbcType=NUMERIC}
+        where uuid = #{uuid,jdbcType=NUMERIC}
+    </update>
 </mapper>

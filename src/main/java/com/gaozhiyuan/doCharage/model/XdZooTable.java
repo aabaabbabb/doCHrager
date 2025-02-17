@@ -82,4 +82,9 @@ public class XdZooTable {
      * 
      */
     private String ordercount;
+
+    /**
+     * 
+     */
+    private Integer daoru;
 }
