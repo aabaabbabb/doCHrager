@@ -26,4 +26,9 @@
         jingliname,jinglitel,curuserid,updatetime,zid,
         createtimelost,syncxdj,ordercount
     </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_zoo_table
+    </select>
 </mapper>

@@ -1,4 +1,5 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import java.util.List;
 
 import com.gaozhiyuan.doCharage.model.XdZooTable;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.gaozhiyuan.doCharage.model.XdZooTable
 */
 public interface XdZooTableMapper extends BaseMapper<XdZooTable> {
-
+    List<XdZooTable> selectAll();
 }
 
 

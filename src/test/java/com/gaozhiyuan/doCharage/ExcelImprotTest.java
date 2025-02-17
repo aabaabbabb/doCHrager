@@ -1,23 +1,13 @@
 package com.gaozhiyuan.doCharage;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.gaozhiyuan.doCharage.mapper.primary.XdAdminMapper;
-import com.gaozhiyuan.doCharage.mapper.primary.XdHotelMapper;
-import com.gaozhiyuan.doCharage.mapper.primary.XdMyClientMapper;
-import com.gaozhiyuan.doCharage.mapper.primary.XdTeamMapper;
-import com.gaozhiyuan.doCharage.model.XdAdmin;
-import com.gaozhiyuan.doCharage.model.XdHotel;
-import com.gaozhiyuan.doCharage.model.XdMyClient;
-import com.gaozhiyuan.doCharage.model.XdTeam;
+import com.gaozhiyuan.doCharage.mapper.primary.*;
+import com.gaozhiyuan.doCharage.model.*;
 import com.gaozhiyuan.doCharage.service.XdMyClientService;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -33,8 +23,10 @@ public class ExcelImprotTest {
     XdAdminMapper xdAdminMapper;
     @Autowired
     XdTeamMapper xdTeamMapper;
+    @Autowired
+    XdZooTableMapper xdZooTableMapper;
 
-    public static  List<List<String>> readExcel(String filePath) throws IOException {
+    public List<XdZooTable> readExcel() throws IOException {
 
 //        // 表头列的名称
 //        List<String> headers = Arrays.asList(
@@ -45,53 +37,56 @@ public class ExcelImprotTest {
 //        );
 //uuid	userid	userpid	createtime	hotelname	eid	jingliname	jinglitel	curuserid	updatetime	zid	createtimelost	syncxdj	ordercount
 
-        List<List<String>> resultList = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            // 读取每一行数据并存入 List
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("\uFEFF")) {
-                    line = line.substring(1);  // 删除 BOM 字符
-                }
-                List<String> list = Arrays.asList(line.split(","));
-                resultList.add(list);
-            }
-        }
-        return resultList;
+        List<XdZooTable> xdZooTables = xdZooTableMapper.selectAll();
+
+        System.out.println(xdZooTables);
+
+//        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+//            String line;
+//            // 读取每一行数据并存入 List
+//            while ((line = reader.readLine()) != null) {
+//                if (line.startsWith("\uFEFF")) {
+//                    line = line.substring(1);  // 删除 BOM 字符
+//                }
+//                List<String> list = Arrays.asList(line.split(","));
+//                resultList.add(list);
+//            }
+//        }
+        return xdZooTables;
     }
 
     @Test
     public void data() throws IOException {
-        List<List<String>>excelData = readExcel("C:\\Users\\Administrator\\Desktop\\Microsoft Excel999.csv");
+        List<XdZooTable> excelData = readExcel();
         System.out.println(excelData.size());
         insertData(excelData);
     }
 
     @Autowired
     XdMyClientService xdMyClientService;
-   private boolean insertData( List<List<String>> excelData){
+   private boolean insertData( List<XdZooTable> excelData){
 
 
        int count = 1;
        //0      1       2          3           4         5     6          7           8          9       10         11          12      13
        //uuid	userid	userpid	createtime	hotelname	eid	jingliname	jinglitel	curuserid	updatetime	zid	createtimelost	syncxdj	ordercount
-        for (List<String> list : excelData){
+        for (XdZooTable xdZooTable : excelData){
             List<XdMyClient> XdMyClientList = new ArrayList<>();
-            String id = list.get(0);
-            String userid = list.get(8);
+            Integer userid = xdZooTable.getCuruserid();
             if (userid.equals("0")|| userid.equals("1")|| userid.equals("")){
                 continue;
             }
-            String hotelname = list.get(4);
-            String createtime  = list.get(3);
-            String eid = list.get(5);
-            if (eid.equals("1.11E+16")|| eid.equals("华辉酒店(惠州西湖东站店)")|| eid.equals("月格熙精品民宿(大理古城店)")){
+            String hotelname = xdZooTable.getHotelname();
+            Integer createtime  = xdZooTable.getCreatetime();
+            Long eid = xdZooTable.getEid();
+            if (eid ==0){
                 System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，进入断点");
                 System.out.println("eid");
                 continue;
             }
-            XdHotel xdHotel = xdHotelMapper.selectByEid(Integer.parseInt(eid));
+            int elongid = eid.intValue();
+            XdHotel xdHotel = xdHotelMapper.selectByEid(elongid);
             if(xdHotel == null){
                 xdHotel = new XdHotel();
                 xdHotel.setId(2025021400);
@@ -102,8 +97,8 @@ public class ExcelImprotTest {
                 continue;
             }
             System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---开始运行");
-            xdHotel.setContactName(list.get(6) == null ? null : list.get(6));
-            xdHotel.setContactPhone(list.get(7) == null ? null : list.get(7));
+            xdHotel.setContactName(xdZooTable.getJingliname() == null ? null : xdZooTable.getJingliname());
+            xdHotel.setContactPhone(xdZooTable.getJinglitel() == null ? null : xdZooTable.getJinglitel());
 
             System.out.println("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息开始更新");
             xdHotelMapper.updateContactNameAndContactPhoneById(xdHotel.getContactName(), xdHotel.getContactPhone(), xdHotel.getId());
@@ -111,17 +106,17 @@ public class ExcelImprotTest {
             System.out.println("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息更新完毕");
 
             XdMyClient xdMyClient = new XdMyClient();
-            Integer cid = Integer.parseInt(list.get(2));
+            Integer cid = xdZooTable.getUserpid();
             System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"cid："+cid);
-            XdAdmin user = xdAdminMapper.selectById(Integer.parseInt(userid));
+            XdAdmin user = xdAdminMapper.selectById(userid);
             if (user != null) {
                 XdTeam xdTeam = xdTeamMapper.selectById(user.getTid());
-                if (Integer.parseInt(list.get(2))==0){
+                if (xdZooTable.getUserpid()==0){
                     if (user.getCid()==null)
                         continue;
                     xdMyClient.setCid(user.getCid());
                 }else{
-                    xdMyClient.setCid(Integer.parseInt(list.get(2)));
+                    xdMyClient.setCid(cid);
                 }
                 if (xdTeam != null) {
                     xdMyClient.setPid(xdTeam.getProjId());
@@ -149,17 +144,17 @@ public class ExcelImprotTest {
             }
 //            xdMyClient.setId(Integer.parseInt(id));
             xdMyClient.setHid(xdHotel.getId());
-            xdMyClient.setAid(Integer.parseInt(userid));
+            xdMyClient.setAid(userid);
             xdMyClient.setType(1);
-            xdMyClient.setImportTime(Integer.parseInt(createtime));
+            xdMyClient.setImportTime(createtime);
             xdMyClient.setOutPrivSeaTime(0);
             xdMyClient.setPrivSeaTime(0);
             xdMyClient.setOutPrivSeaTime(0);
             xdMyClient.setDuration(0);
             xdMyClient.setLastFid(0);
             xdMyClient.setDealTime(0);
-            xdMyClient.setCreateTime(Integer.parseInt(createtime));
-            xdMyClient.setAlterTime(Integer.parseInt(list.get(9)));
+            xdMyClient.setCreateTime(createtime);
+            xdMyClient.setAlterTime(xdZooTable.getUpdatetime());
             xdMyClient.setOutTime(0);
 
             if (xdMyClientMapper.selectByHid(xdMyClient.getHid()) == null) {
