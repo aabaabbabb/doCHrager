@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gaozhiyuan.doCharage.mapper.secondary.LcElongHotelsMapper">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.XdZElongHotelsMapper">
 
-    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.LcElongHotels">
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.XdZElongHotels">
             <id property="tid" column="tid" />
             <result property="id" column="id" />
             <result property="name" column="name" />
@@ -154,16 +154,21 @@
         <select id="selectByIdAndBusinessZone" resultMap="BaseResultMap">
                 select
                 <include refid="Base_Column_List"/>
-                from lc_elong_hotels
+                from xd_z_elong_hotels
                 where
                 id = #{id,jdbcType=VARCHAR}
                 AND business_zone = #{businessZone,jdbcType=VARCHAR}
         </select>
-    <select id="selectById" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from lc_elong_hotels
-        where
-        id = #{id,jdbcType=VARCHAR}
-    </select>
+        <select id="selectById" resultMap="BaseResultMap">
+                select
+                <include refid="Base_Column_List"/>
+                from xd_z_elong_hotels
+                where
+                id = #{id,jdbcType=VARCHAR}
+        </select>
+        <select id="selectIdAndBusinessZoneById" resultMap="BaseResultMap">
+                select id, business_zone
+                from xd_z_elong_hotels
+                where id = #{id,jdbcType=VARCHAR}
+        </select>
 </mapper>

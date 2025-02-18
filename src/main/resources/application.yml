@@ -34,6 +34,17 @@ spring:
         logic-delete-value: 1
         logic-not-delete-value: 0
 logging:
+  # 设置全局日志级别
   level:
-    org:
-      springframework=DEBUG:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.yourcompany: TRACE
+
+  # 设置日志输出格式（控制台）
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+
+  # 设置日志文件输出路径、大小、保留历史文件数等
+  file:
+    name: 'logs/app.log'
+

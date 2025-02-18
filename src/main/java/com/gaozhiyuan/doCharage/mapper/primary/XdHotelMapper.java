@@ -22,6 +22,9 @@ public interface XdHotelMapper extends BaseMapper<XdHotel> {
 
     int updateContactNameAndContactPhoneById(@Param("contactName") String contactName, @Param("contactPhone") String contactPhone, @Param("id") Integer id);
     //AndHotelStarIdAnd
+    List<XdHotel> selectByHotelBusinessIdAndTmp(@Param("hotelBusinessId") Integer hotelBusinessId, @Param("tmp") Integer tmp);
+
+    int updateHotelBusinessIdById(@Param("hotelBusinessId") Integer hotelBusinessId, @Param("id") Integer id);
 }
 
 

@@ -13,6 +13,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface LcElongHotelsMapper extends BaseMapper<LcElongHotels> {
   public  List<LcElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
+
+  List<LcElongHotels> selectById(@Param("id") String id);
 }
 
 

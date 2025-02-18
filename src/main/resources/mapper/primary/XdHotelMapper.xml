@@ -91,4 +91,17 @@
             contact_phone = #{contactPhone,jdbcType=VARCHAR}
         where id = #{id,jdbcType=NUMERIC}
     </update>
+    <select id="selectByHotelBusinessIdAndTmp" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_hotel
+        where
+        hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
+        AND tmp = #{tmp,jdbcType=NUMERIC}
+    </select>
+    <update id="updateHotelBusinessIdById">
+        update xd_hotel
+        set hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>
