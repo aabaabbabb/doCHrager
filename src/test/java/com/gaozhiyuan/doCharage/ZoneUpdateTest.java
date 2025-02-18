@@ -21,49 +21,75 @@ public class ZoneUpdateTest {
     XdHotelMapper xdHotelMapper;
 
     public void updateBusiness() {
+
         int count = 1;
-        List<XdHotel> xdHotels = xdHotelMapper.selectByHotelBusinessIdAndTmp(0, 1);
-        for (XdHotel xdHotel : xdHotels) {
-            log.info("----------------------循环开始新酒店更新---------------------------");
-            log.info("第{}行，酒店名称：{}elongid：{}", count, xdHotel.getName(), xdHotel.getEid());
-            XdZElongHotels xdZElongHotels = xdZElongHotelsMapper.selectIdAndBusinessZoneById(String.valueOf(xdHotel.getEid()));
-            if (xdZElongHotels != null) {
-                log.info("第{}行，酒店名称：{}elongid：{},查询目标表不为空，进行businessZone判断", count, xdHotel.getName(), xdHotel.getEid());
-                if (xdZElongHotels.getBusinessZone() != null) {
-                    log.info("第{}行，酒店名称：{}elongid：{},businessZone判断不为空值为：{}", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
-                    xdHotelMapper.updateHotelBusinessIdById(Integer.valueOf(xdZElongHotels.getBusinessZone()), xdHotel.getId());
-                    log.info("第{}行，酒店名称：{}elongid：{},businessZone判断不为空值为：{},更新完毕", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
-                }
-            } else {
-                xdZElongHotels = xdZElongHotelsMapper.selectIdAndBusinessZoneById("00" + xdHotel.getEid());
+        for (int i = 0; i < 10; i++) {
+            // 假设我们要查询第 0 页的数据，每页 10 万条
+            log.info("----------------------进入第{}页---------------------------", i);
+            int offset = i;
+            int limit = (i + 1) * 100000;
+            List<XdHotel> xdHotels = xdHotelMapper.selectByTmpAndHotelStarId(1,0, offset, limit);
+            for (XdHotel xdHotel : xdHotels) {
+                log.info("----------------------循环开始新酒店更新---------------------------");
+                log.info("第{}行，酒店名称：{}elongid：{}", count, xdHotel.getName(), xdHotel.getEid());
+                XdZElongHotels xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById(String.valueOf(xdHotel.getEid()));
                 if (xdZElongHotels != null) {
-                    log.info("第{}行，酒店名称：{}elongid：{},查询加00目标表不为空，进行businessZone判断", count, xdHotel.getName(), xdHotel.getEid());
-                    if (xdZElongHotels.getBusinessZone() != null) {
-                        log.info("第{}行，酒店名称：{}elongid：{},查询加00的businessZone判断不为空值为：{}", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
-                        xdHotelMapper.updateHotelBusinessIdById(Integer.valueOf(xdZElongHotels.getBusinessZone()), xdHotel.getId());
-                        log.info("第{}行，酒店名称：{}elongid：{},查询加00的businessZone判断不为空值为：{},更新完毕", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
-                    }
+                    log.info("第{}行，酒店名称：{}elongid：{},判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                    String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
+                    String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
+                    Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
+                    Integer Category = (xdZElongHotels.getCategory() == null) ? 0 : xdZElongHotels.getCategory();
+                    String EstablishmentDate = (xdZElongHotels.getEstablishmentDate() == null) ? "" : xdZElongHotels.getEstablishmentDate();
+                    String RenovationDate = (xdZElongHotels.getRenovationDate() == null) ? "" : xdZElongHotels.getRenovationDate();
+                    String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
+                    String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
+                    xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
+                    log.info("第{}行，酒店名称：{}elongid：{},更新完毕", count, xdHotel.getName(), xdHotel.getEid());
                 } else {
-                    xdZElongHotels = xdZElongHotelsMapper.selectIdAndBusinessZoneById("0" + xdHotel.getEid());
+                    xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById("00" + xdHotel.getEid());
                     if (xdZElongHotels != null) {
-                        log.info("第{}行，酒店名称：{}elongid：{},查询加0目标表不为空，进行businessZone判断", count, xdHotel.getName(), xdHotel.getEid());
-                        if (xdZElongHotels.getBusinessZone() != null) {
-                            log.info("第{}行，酒店名称：{}elongid：{},加0的businessZone判断不为空值为：{}", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
-                            xdHotelMapper.updateHotelBusinessIdById(Integer.valueOf(xdZElongHotels.getBusinessZone()), xdHotel.getId());
-                            log.info("第{}行，酒店名称：{}elongid：{},加0的businessZone判断不为空值为：{},更新完毕", count, xdHotel.getName(), xdHotel.getEid(), xdZElongHotels.getBusinessZone());
+                        log.info("第{}行，酒店名称：{}elongid：{},查询加---00---判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                        String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
+                        String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
+                        Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
+                        Integer Category = (xdZElongHotels.getCategory() == null) ? 0 : xdZElongHotels.getCategory();
+                        String EstablishmentDate = (xdZElongHotels.getEstablishmentDate() == null) ? "" : xdZElongHotels.getEstablishmentDate();
+                        String RenovationDate = (xdZElongHotels.getRenovationDate() == null) ? "" : xdZElongHotels.getRenovationDate();
+                        String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
+                        String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
+                        xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
+                        log.info("第{}行，酒店名称：{}elongid：{},查询加---00---更新完毕", count, xdHotel.getName(), xdHotel.getEid());
+                    } else {
+                        xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById("0" + xdHotel.getEid());
+                        if (xdZElongHotels != null) {
+                            log.info("第{}行，酒店名称：{}elongid：{},查询加---0---判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                            String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
+                            String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
+                            Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
+                            Integer Category = (xdZElongHotels.getCategory() == null) ? 0 : xdZElongHotels.getCategory();
+                            String EstablishmentDate = (xdZElongHotels.getEstablishmentDate() == null) ? "" : xdZElongHotels.getEstablishmentDate();
+                            String RenovationDate = (xdZElongHotels.getRenovationDate() == null) ? "" : xdZElongHotels.getRenovationDate();
+                            String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
+                            String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
+                            xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
+                            log.info("第{}行，酒店名称：{}elongid：{},查询加---0---更新完毕", count, xdHotel.getName(), xdHotel.getEid());
                         }
                     }
                 }
+                count++;
+                log.info("第{}行，酒店名称：{}elongid：{}，循环结束", count, xdHotel.getName(), xdHotel.getEid());
+                log.info("----------------------进入下一条---------------------------");
             }
-            count++;
-            log.info("第{}行，酒店名称：{}elongid：{}，循环结束", count, xdHotel.getName(), xdHotel.getEid());
-            log.info("----------------------进入下一条---------------------------");
+
+            log.info("----------------------进入下一页---------------------------");
         }
         log.info("更新完成,总数：{}", count);
     }
 
     @Test
     public void executionMethod() {
+//        List<XdHotel> xdHotels = xdHotelMapper.selectByTmpAndHotelStarId(1,0);
+//        System.out.println(xdHotels.size());
         updateBusiness();
     }
 

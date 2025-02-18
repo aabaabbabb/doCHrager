@@ -47,6 +47,7 @@
             <result property="dlid" column="dlid" />
             <result property="aid" column="aid" />
             <result property="tmp" column="tmp" />
+         <result property="isUpdate" column="is_update" />
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -58,7 +59,7 @@
         xc_score,el_score,create_time,alter_time,token,
         fax,expand_status,reception_phone,reception_phone_again,start_business_time,
         fitment_time,gd_qr_code,comment_total,dlid,aid,
-        tmp
+        tmp,is_update
     </sql>
     <select id="selectHotelBusinessIdAndTmpByHotelBusinessIdAndTmp" resultMap="BaseResultMap">
         select eid,zid,name,address,hotel_business_id, tmp
@@ -104,4 +105,33 @@
         set hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
+    <update id="updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById">
+        update xd_hotel
+        set hotel_business_id   = #{hotelBusinessId,jdbcType=NUMERIC},
+            hotel_category_id   = #{hotelCategoryId,jdbcType=VARCHAR},
+            hotel_brand_id      = #{hotelBrandId,jdbcType=NUMERIC},
+            hotel_star_id       = #{hotelStarId,jdbcType=NUMERIC},
+            start_business_time = #{startBusinessTime,jdbcType=VARCHAR},
+            fitment_time        = #{fitmentTime,jdbcType=VARCHAR},
+            eid = #{eid,jdbcType=VARCHAR},
+            city_id = #{city_id,jdbcType=VARCHAR},
+            is_update = #{is_update,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+    <select id="selectByTmp" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_hotel
+        where
+        tmp = #{tmp,jdbcType=NUMERIC}
+    </select>
+    <select id="selectByTmpAndHotelStarId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_hotel
+        where
+        tmp = #{tmp,jdbcType=NUMERIC}
+        AND is_update = #{is_update,jdbcType=NUMERIC}
+        LIMIT #{offset}, #{limit}
+    </select>
 </mapper>

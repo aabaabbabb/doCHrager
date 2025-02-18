@@ -171,4 +171,11 @@
                 from xd_z_elong_hotels
                 where id = #{id,jdbcType=VARCHAR}
         </select>
+    <select id="selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById"
+            resultMap="BaseResultMap">
+/**包括ID、星级、品牌ID、开业日期、装修日期、商业区域和酒店类型。**/
+        select id, category, brand_id, establishment_date, renovation_date, business_zone, hoteltypes, city_id
+        from xd_z_elong_hotels
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
 </mapper>

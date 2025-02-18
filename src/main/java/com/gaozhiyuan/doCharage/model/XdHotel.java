@@ -23,7 +23,7 @@ public class XdHotel {
     /**
      * 艺龙id
      */
-    private Integer eid;
+    private String eid;
 
     /**
      * 住哪id
@@ -43,7 +43,7 @@ public class XdHotel {
     /**
      * 城市id
      */
-    private Integer cityId;
+    private String cityId;
 
     /**
      * 酒店电话
@@ -224,4 +224,6 @@ public class XdHotel {
      * 
      */
     private Integer tmp;
+
+    private Integer isUpdate;
 }

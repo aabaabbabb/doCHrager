@@ -15,6 +15,14 @@ public interface XdZElongHotelsMapper extends BaseMapper<XdZElongHotels> {
     List<XdZElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
 
     XdZElongHotels selectIdAndBusinessZoneById(@Param("id") String id);
+
+    /**
+     * 根据ID查询酒店的基本信息，包括ID、星级、品牌ID、开业日期、装修日期、商业区域和酒店类型。
+     *
+     * @return XdZElongHotels 包含酒店基本信息的对象
+     */
+    XdZElongHotels selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById(@Param("id") String id);
+
 }
 
 
