@@ -29,12 +29,16 @@ public class ZoneUpdateTest {
             int offset = i;
             int limit = (i + 1) * 100000;
             List<XdHotel> xdHotels = xdHotelMapper.selectByTmpAndHotelStarId(1,0, offset, limit);
+            if (xdHotels.size()==0) {
+                log.info("----------------------第{}页数据为空---------------------------", i);
+                continue;
+            }
             for (XdHotel xdHotel : xdHotels) {
                 log.info("----------------------循环开始新酒店更新---------------------------");
-                log.info("第{}行，酒店名称：{}elongid：{}", count, xdHotel.getName(), xdHotel.getEid());
+                log.info("总数{}，第{}行，酒店名称：{}elongid：{}",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                 XdZElongHotels xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById(String.valueOf(xdHotel.getEid()));
                 if (xdZElongHotels != null) {
-                    log.info("第{}行，酒店名称：{}elongid：{},判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                    log.info("总数{}，第{}行，酒店名称：{}elongid：{},判断不为空值", xdHotels.size(),count, xdHotel.getName(), xdHotel.getEid());
                     String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
                     String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
                     Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
@@ -44,11 +48,11 @@ public class ZoneUpdateTest {
                     String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
                     String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
                     xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
-                    log.info("第{}行，酒店名称：{}elongid：{},更新完毕", count, xdHotel.getName(), xdHotel.getEid());
+                    log.info("总数{}，第{}行，酒店名称：{}elongid：{},更新完毕",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                 } else {
                     xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById("00" + xdHotel.getEid());
                     if (xdZElongHotels != null) {
-                        log.info("第{}行，酒店名称：{}elongid：{},查询加---00---判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                        log.info("总数{}，第{}行，酒店名称：{}elongid：{},查询加---00---判断不为空值",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                         String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
                         String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
                         Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
@@ -58,11 +62,11 @@ public class ZoneUpdateTest {
                         String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
                         String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
                         xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
-                        log.info("第{}行，酒店名称：{}elongid：{},查询加---00---更新完毕", count, xdHotel.getName(), xdHotel.getEid());
+                        log.info("总数{}，第{}行，酒店名称：{}elongid：{},查询加---00---更新完毕",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                     } else {
                         xdZElongHotels = xdZElongHotelsMapper.selectIdAndCategoryAndBrandIdAndEstablishmentDateAndRenovationDateAndBusinessZoneAndHoteltypesById("0" + xdHotel.getEid());
                         if (xdZElongHotels != null) {
-                            log.info("第{}行，酒店名称：{}elongid：{},查询加---0---判断不为空值", count, xdHotel.getName(), xdHotel.getEid());
+                            log.info("总数{}，第{}行，酒店名称：{}elongid：{},查询加---0---判断不为空值",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                             String hotelTypes = (xdZElongHotels.getHoteltypes() == null) ? "0" : xdZElongHotels.getHoteltypes();
                             String BusinessZone = (xdZElongHotels.getBusinessZone() == null) ? "0" : xdZElongHotels.getBusinessZone();
                             Integer BrandId = (xdZElongHotels.getBrandId() == null) ? 0 : xdZElongHotels.getBrandId();
@@ -72,12 +76,12 @@ public class ZoneUpdateTest {
                             String eid = (xdZElongHotels.getId() == null) ? "" : xdZElongHotels.getId();
                             String city_id = (xdZElongHotels.getCityId() == null) ? "" : xdZElongHotels.getCityId();
                             xdHotelMapper.updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(Integer.valueOf(BusinessZone), hotelTypes, BrandId,Category ,EstablishmentDate , RenovationDate,eid,city_id,1,xdHotel.getId());
-                            log.info("第{}行，酒店名称：{}elongid：{},查询加---0---更新完毕", count, xdHotel.getName(), xdHotel.getEid());
+                            log.info("总数{}，第{}行，酒店名称：{}elongid：{},查询加---0---更新完毕",xdHotels.size(),  count, xdHotel.getName(), xdHotel.getEid());
                         }
                     }
                 }
                 count++;
-                log.info("第{}行，酒店名称：{}elongid：{}，循环结束", count, xdHotel.getName(), xdHotel.getEid());
+                log.info("总数{}，第{}行，酒店名称：{}elongid：{}，循环结束",xdHotels.size(), count, xdHotel.getName(), xdHotel.getEid());
                 log.info("----------------------进入下一条---------------------------");
             }
 
