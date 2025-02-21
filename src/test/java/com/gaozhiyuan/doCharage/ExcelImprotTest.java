@@ -71,7 +71,7 @@ public class ExcelImprotTest {
             if (userid.equals("0")|| userid.equals("1")|| userid.equals("")){
                 xdZooTableMapper.updateDaoruByUuid(1,uuid);
                 if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                   log.info("第{}条---eid：{}---eid为：{}，更新状态成功，进入吓一条",count,eid,eid);
+                   log.info("第{}条---eid：{}---eid为：{}，更新状态成功，进入下一条",count,eid,eid);
                 }
                     count++;
                     continue;

@@ -81,7 +81,7 @@
     </update>
     <select id="selectByEid" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+       id,eid,name
         from xd_hotel
         where
         eid = #{eid,jdbcType=NUMERIC}

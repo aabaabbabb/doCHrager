@@ -33,6 +33,7 @@
             <result property="createtimelost" column="createtimelost" />
             <result property="source" column="source" />
             <result property="isUpdate" column="is_update" />
+            <result property="isImport" column="is_Import" />
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -41,7 +42,7 @@
         eid,pinyin,py,lat,lng,
         jingliname,jinglitel,bak,curuserid,updatetime,
         status,hotelid,timerday,timer,createtimelost,
-        source,is_update
+        source,is_update,is_Import
     </sql>
     <select id="selectByIsUpdate" resultMap="BaseResultMap">
         select
@@ -50,4 +51,18 @@
         where
         is_update = #{isUpdate,jdbcType=NUMERIC}
     </select>
+    <select id="selectByIsUpdateAndIsImportAndEidIsNotNull" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shuipf_hotelquyu
+        where
+        is_update = #{isUpdate,jdbcType=NUMERIC}
+        AND is_Import = #{isImport,jdbcType=NUMERIC}
+        AND eid is not null
+    </select>
+    <update id="updateIsImportById">
+        update shuipf_hotelquyu
+        set is_Import = #{isImport,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

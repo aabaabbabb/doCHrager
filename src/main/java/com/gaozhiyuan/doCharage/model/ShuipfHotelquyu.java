@@ -153,4 +153,10 @@ public class ShuipfHotelquyu {
      * 
      */
     private Integer isUpdate;
+
+    /**
+     *
+     */
+    private Integer isImport;
+
 }

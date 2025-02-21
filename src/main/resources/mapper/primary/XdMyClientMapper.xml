@@ -55,4 +55,12 @@
             )
         </foreach>
     </insert>
+    <select id="selectByHidAndPid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_my_client
+        where
+        hid = #{hid,jdbcType=NUMERIC}
+        AND pid = #{pid,jdbcType=NUMERIC}
+    </select>
 </mapper>

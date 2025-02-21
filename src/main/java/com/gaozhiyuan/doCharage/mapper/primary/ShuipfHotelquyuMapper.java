@@ -13,6 +13,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface ShuipfHotelquyuMapper extends BaseMapper<ShuipfHotelquyu> {
     List<ShuipfHotelquyu> selectByIsUpdate(@Param("isUpdate") Integer isUpdate);
+    //EidIsNotNull
+    List<ShuipfHotelquyu> selectByIsUpdateAndIsImportAndEidIsNotNull(@Param("isUpdate") Integer isUpdate, @Param("isImport") Integer isImport);
+
+    int updateIsImportById(@Param("isImport") Integer isImport, @Param("id") Integer id);
 }
 
 
