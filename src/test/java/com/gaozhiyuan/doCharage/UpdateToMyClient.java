@@ -82,7 +82,7 @@ public class UpdateToMyClient {
                 count++;
                 continue;
             }
-            XdHotel xdHotel = xdHotelMapper.selectByEid(elongid);
+            XdHotel xdHotel = xdHotelMapper.selectByEid(eid);
             if(xdHotel == null){
                 xdHotel = new XdHotel();
                 xdHotel.setId(2025021400);

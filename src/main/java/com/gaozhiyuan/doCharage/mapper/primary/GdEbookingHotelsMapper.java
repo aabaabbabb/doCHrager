@@ -1,4 +1,6 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 import com.gaozhiyuan.doCharage.model.GdEbookingHotels;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -10,7 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.gaozhiyuan.doCharage.model.GdEbookingHotels
 */
 public interface GdEbookingHotelsMapper extends BaseMapper<GdEbookingHotels> {
-
+    GdEbookingHotels selectByElongHotelId(@Param("elongHotelId") String elongHotelId);
 }
 
 

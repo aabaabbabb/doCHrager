@@ -26,4 +26,14 @@
         is_delete,booking_contact_name,booking_contact_phone,delete_time,update_time,
         commission_rate,city_id,city_name
     </sql>
+    <select id="selectElongHotelIdByRoleIdIn" resultMap="BaseResultMap">
+        select elong_hotel_id
+        from gd_ebooking_employee_hotel
+        where
+        role_id in
+        <foreach collection="roleIdList" item="item" open="(" close=")" separator=",">
+            #{item,jdbcType=NUMERIC}
+        </foreach>
+        group by elong_hotel_id
+    </select>
 </mapper>

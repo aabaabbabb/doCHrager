@@ -18,7 +18,7 @@ public interface XdHotelMapper extends BaseMapper<XdHotel> {
 
     int updateZidByEid(@Param("zid") Integer zid, @Param("eid") Integer eid);
 
-    XdHotel selectByEid(@Param("eid") Integer eid);
+    XdHotel selectByEid(@Param("eid") String eid);
 
     int updateContactNameAndContactPhoneById(@Param("contactName") String contactName, @Param("contactPhone") String contactPhone, @Param("id") Integer id);
     //AndHotelStarIdAnd
@@ -36,6 +36,8 @@ public interface XdHotelMapper extends BaseMapper<XdHotel> {
             @Param("offset") Integer offset,
             @Param("limit") Integer limit
     );
+
+    int updateIsOpenXdjById(@Param("isOpenXdj") Object isOpenXdj, @Param("id") Integer id);
 }
 
 

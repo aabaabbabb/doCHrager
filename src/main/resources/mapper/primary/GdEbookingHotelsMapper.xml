@@ -64,4 +64,11 @@
         server_id,gd_online,notes,sk_hotelid,is_hotel_ebooking,
         bd_hotel_id,baidu_lat,baidu_lng,min_price,max_price
     </sql>
+    <select id="selectByElongHotelId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_ebooking_hotels
+        where
+        elong_hotel_id = #{elongHotelId,jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.XdHotelExpandMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.XdHotelExpand">
+            <id property="id" column="id" />
+            <result property="hid" column="hid" />
+            <result property="tcid" column="tcid" />
+            <result property="bid" column="bid" />
+            <result property="sid" column="sid" />
+            <result property="xid" column="xid" />
+            <result property="gid" column="gid" />
+            <result property="fid" column="fid" />
+            <result property="cooperation" column="cooperation" />
+            <result property="adjustmentMode" column="adjustment_mode" />
+            <result property="confirmaMode" column="confirma_mode" />
+            <result property="invoicingMode" column="invoicing_mode" />
+            <result property="robotKey" column="robot_key" />
+            <result property="operatorId" column="operator_id" />
+            <result property="minPrice" column="min_price" />
+            <result property="canalBrokerageId" column="canal_brokerage_id" />
+            <result property="settlementRole" column="settlement_role" />
+            <result property="contactPerson" column="contact_person" />
+            <result property="contactPhone" column="contact_phone" />
+            <result property="emergencyPhone" column="emergency_phone" />
+            <result property="imgUrl" column="img_url" />
+            <result property="invoiceTitle" column="invoice_title" />
+            <result property="taxNumber" column="tax_number" />
+            <result property="invoicePhone" column="invoice_phone" />
+            <result property="invoiceEmail" column="invoice_email" />
+            <result property="xdjMenus" column="xdj_menus" />
+            <result property="expandBrokerage" column="expand_brokerage" />
+            <result property="createTime" column="create_time" />
+            <result property="alterTime" column="alter_time" />
+            <result property="aid" column="aid" />
+            <result property="tid" column="tid" />
+            <result property="hotelOperator" column="hotel_operator" />
+            <result property="balance" column="balance" />
+            <result property="dlid" column="dlid" />
+            <result property="isDialog" column="is_dialog" />
+            <result property="isSoundPrompt" column="is_sound_prompt" />
+            <result property="memo" column="memo" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,hid,tcid,bid,sid,xid,
+        gid,fid,cooperation,adjustment_mode,confirma_mode,
+        invoicing_mode,robot_key,operator_id,min_price,canal_brokerage_id,
+        settlement_role,contact_person,contact_phone,emergency_phone,img_url,
+        invoice_title,tax_number,invoice_phone,invoice_email,xdj_menus,
+        expand_brokerage,create_time,alter_time,aid,tid,
+        hotel_operator,balance,dlid,is_dialog,is_sound_prompt,
+        memo
+    </sql>
+    <select id="selectByHid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_hotel_expand
+        where
+        hid = #{hid,jdbcType=NUMERIC}
+    </select>
+</mapper>

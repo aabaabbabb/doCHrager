@@ -86,8 +86,7 @@ public class ExcelImprotTest {
                 count++;
                 continue;
             }
-            int elongid = eid.intValue();
-            XdHotel xdHotel = xdHotelMapper.selectByEid(elongid);
+            XdHotel xdHotel = xdHotelMapper.selectByEid(eid+"");
             if(xdHotel == null){
                 xdHotel = new XdHotel();
                 xdHotel.setId(2025021400);

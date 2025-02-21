@@ -81,10 +81,10 @@
     </update>
     <select id="selectByEid" resultMap="BaseResultMap">
         select
-       id,eid,name
+       id,eid,name,is_open_xdj
         from xd_hotel
         where
-        eid = #{eid,jdbcType=NUMERIC}
+        eid = #{eid,jdbcType=CHAR}
     </select>
     <update id="updateContactNameAndContactPhoneById">
         update xd_hotel
@@ -134,4 +134,9 @@
         AND is_update = #{is_update,jdbcType=NUMERIC}
         LIMIT #{offset}, #{limit}
     </select>
+    <update id="updateIsOpenXdjById">
+        update xd_hotel
+        set is_open_xdj = #{isOpenXdj}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>
