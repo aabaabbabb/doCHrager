@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.GdEbookingHotelsMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.GdEbookingHotels">
+            <id property="id" column="id" />
+            <result property="cityId" column="city_id" />
+            <result property="elongHotelId" column="elong_hotel_id" />
+            <result property="hotelName" column="hotel_name" />
+            <result property="commissionRate" column="commission_rate" />
+            <result property="contactName" column="contact_name" />
+            <result property="contactPhone" column="contact_phone" />
+            <result property="createTime" column="create_time" />
+            <result property="operationMode" column="operation_mode" />
+            <result property="cooperationType" column="cooperation_type" />
+            <result property="priceAdjustmentMode" column="price_adjustment_mode" />
+            <result property="companyWeixinGroupRobotKey" column="company_weixin_group_robot_key" />
+            <result property="isDelete" column="is_delete" />
+            <result property="signatoryid" column="signatoryId" />
+            <result property="serviceid" column="serviceId" />
+            <result property="signatoryname" column="signatoryName" />
+            <result property="servicename" column="serviceName" />
+            <result property="cooperateCommissionRate" column="cooperate_commission_rate" />
+            <result property="settlementCycle" column="settlement_cycle" />
+            <result property="accountMoney" column="account_money" />
+            <result property="autoConfirmOrder" column="auto_confirm_order" />
+            <result property="promotionBalance" column="promotion_balance" />
+            <result property="accountMoneyLastUptime" column="account_money_last_uptime" />
+            <result property="address" column="address" />
+            <result property="phone" column="phone" />
+            <result property="cityName" column="city_name" />
+            <result property="employeeId" column="employee_id" />
+            <result property="updateTime" column="update_time" />
+            <result property="sjlHotelid" column="sjl_hotelid" />
+            <result property="gdHotelName" column="gd_hotel_name" />
+            <result property="isGaodeSame" column="is_gaode_same" />
+            <result property="gdHotelId" column="gd_hotel_id" />
+            <result property="gdStatus" column="gd_status" />
+            <result property="isGaodeRoom" column="is_gaode_room" />
+            <result property="gdPoiid" column="gd_poiid" />
+            <result property="gdAddress" column="gd_address" />
+            <result property="serverId" column="server_id" />
+            <result property="gdOnline" column="gd_online" />
+            <result property="notes" column="notes" />
+            <result property="skHotelid" column="sk_hotelid" />
+            <result property="isHotelEbooking" column="is_hotel_ebooking" />
+            <result property="bdHotelId" column="bd_hotel_id" />
+            <result property="baiduLat" column="baidu_lat" />
+            <result property="baiduLng" column="baidu_lng" />
+            <result property="minPrice" column="min_price" />
+            <result property="maxPrice" column="max_price" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,city_id,elong_hotel_id,hotel_name,commission_rate,contact_name,
+        contact_phone,create_time,operation_mode,cooperation_type,price_adjustment_mode,
+        company_weixin_group_robot_key,is_delete,signatoryId,serviceId,signatoryName,
+        serviceName,cooperate_commission_rate,settlement_cycle,account_money,auto_confirm_order,
+        promotion_balance,account_money_last_uptime,address,phone,city_name,
+        employee_id,update_time,sjl_hotelid,gd_hotel_name,is_gaode_same,
+        gd_hotel_id,gd_status,is_gaode_room,gd_poiid,gd_address,
+        server_id,gd_online,notes,sk_hotelid,is_hotel_ebooking,
+        bd_hotel_id,baidu_lat,baidu_lng,min_price,max_price
+    </sql>
+</mapper>
