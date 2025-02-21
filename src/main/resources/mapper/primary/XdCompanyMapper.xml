@@ -21,4 +21,11 @@
         id,name,aid,status,is_deleted,create_time,
         alter_time,memo,is_delete,balance
     </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_company
+        where is_delete = 1
+        and id != 1
+    </select>
 </mapper>

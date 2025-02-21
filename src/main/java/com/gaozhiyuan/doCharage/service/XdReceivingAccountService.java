@@ -9,5 +9,4 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-02-20 13:56:25
 */
 public interface XdReceivingAccountService extends IService<XdReceivingAccount> {
-
 }

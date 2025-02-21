@@ -3,6 +3,7 @@ package com.gaozhiyuan.doCharage;
 import com.gaozhiyuan.doCharage.mapper.primary.*;
 import com.gaozhiyuan.doCharage.model.*;
 import com.gaozhiyuan.doCharage.service.XdMyClientService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ import java.util.*;
 
 
 @SpringBootTest
+@Slf4j
 public class ExcelImprotTest {
 
     @Autowired
@@ -47,7 +49,7 @@ public class ExcelImprotTest {
     @Test
     public void data() throws IOException {
         List<XdZooTable> excelData = readExcel();
-        System.out.println(excelData.size());
+       //log.info(excelData.size());
         insertData(excelData);
     }
 
@@ -69,17 +71,17 @@ public class ExcelImprotTest {
             if (userid.equals("0")|| userid.equals("1")|| userid.equals("")){
                 xdZooTableMapper.updateDaoruByUuid(1,uuid);
                 if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                   log.info("第{}条---eid：{}---eid为：{}，更新状态成功，进入吓一条",count,eid,eid);
                 }
                     count++;
                     continue;
             }
 
             if (eid ==0||eid==101012){
-                System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，进入断点");
-                System.out.println("eid");
+               log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，进入断点");
+               log.info("eid");
                 if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                   log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
                 }
                 count++;
                 continue;
@@ -92,32 +94,32 @@ public class ExcelImprotTest {
             }
 
             if (xdMyClientMapper.selectByHid(xdHotel.getId()) != null) {
-                System.out.println("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
+               log.info("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
                 if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                   log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
                 }
                 count++;
                 continue;
             }
-            System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---开始运行");
+           log.info("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---开始运行");
             xdHotel.setContactName(xdZooTable.getJingliname() == null ? null : xdZooTable.getJingliname());
             xdHotel.setContactPhone(xdZooTable.getJinglitel() == null ? null : xdZooTable.getJinglitel());
 
-            System.out.println("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息开始更新");
+           log.info("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息开始更新");
             xdHotelMapper.updateContactNameAndContactPhoneById(xdHotel.getContactName(), xdHotel.getContactPhone(), xdHotel.getId());
 
-            System.out.println("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息更新完毕");
+           log.info("酒店名称："+hotelname +"---eid："+eid+"酒店经理和电话信息更新完毕");
 
             XdMyClient xdMyClient = new XdMyClient();
             Integer cid = xdZooTable.getUserpid();
-            System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"cid："+cid);
+           log.info("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"cid："+cid);
             XdAdmin user = xdAdminMapper.selectById(userid);
             if (user != null) {
                 XdTeam xdTeam = xdTeamMapper.selectById(user.getTid());
                 if (xdZooTable.getUserpid()==0){
                     if (user.getCid()==null) {
                         if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                            System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                           log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
                         }
                         count++;
                         continue;
@@ -144,7 +146,7 @@ public class ExcelImprotTest {
             }else{
                 if (cid==0){
                     if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                        System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                       log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
                     }
                     count++;
                     continue;
@@ -170,26 +172,26 @@ public class ExcelImprotTest {
             xdMyClient.setOutTime(0);
 
             if (xdMyClientMapper.selectByHid(xdMyClient.getHid()) == null) {
-                System.out.println("表中无值可以插入--酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---开始插入");
+               log.info("表中无值可以插入--酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---开始插入");
                 XdMyClientList.add(xdMyClient);
-                System.out.println("开始插入");
+               log.info("开始插入");
                 xdMyClientMapper.insertAll(XdMyClientList);
-                System.out.println("插入完毕");
+               log.info("插入完毕");
             } else {
-                System.out.println("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
+               log.info("酒店名称：" + hotelname + "---eid：" + eid + "我联系的客户---有值，进行下一条");
                 if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                    System.out.println("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
+                   log.info("第"+count+"条---eid："+eid+"---eid为："+eid+"，更新状态成功，进入吓一条");
                 }
                 count++;
                 continue;
             }
             if (xdZooTableMapper.updateDaoruByUuid(1,uuid) >0){
-                System.out.println("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---运行结束，进行下一条");
+               log.info("第"+count+"条---酒店名称："+hotelname +"---eid："+eid+"---运行结束，进行下一条");
             }
             count++;
         }
 
-       System.out.println("插入完毕,条数："+count);
+      log.info("插入完毕,条数："+count);
        return true;
    }
 
@@ -199,7 +201,7 @@ public class ExcelImprotTest {
         BigDecimal bigDecimal = new BigDecimal(eid);
         // 将 BigDecimal 转换为 long
         long number = bigDecimal.longValue();
-        System.out.println(number);
+       log.info("总数{}",number);
     }
 
 }

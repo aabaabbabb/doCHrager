@@ -1,4 +1,5 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import java.util.List;
 
 import com.gaozhiyuan.doCharage.model.XdCompany;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.gaozhiyuan.doCharage.model.XdCompany
 */
 public interface XdCompanyMapper extends BaseMapper<XdCompany> {
-
+    List<XdCompany> selectAll();
 }
 
 

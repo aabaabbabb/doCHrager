@@ -24,4 +24,9 @@
         province,branch_name,account_number,card_type,create_time,
         alter_time
     </sql>
+    <select id="countByCid" resultType="int">
+        select count(*)
+        from xd_receiving_account
+        where cid = #{cid,jdbcType=NUMERIC}
+    </select>
 </mapper>
