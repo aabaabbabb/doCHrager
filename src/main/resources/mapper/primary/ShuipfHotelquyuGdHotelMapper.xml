@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.ShuipfHotelquyuGdHotelMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.ShuipfHotelquyuGdHotel">
+            <id property="id" column="id" />
+            <result property="userid" column="userid" />
+            <result property="hide" column="hide" />
+            <result property="userpid" column="userpid" />
+            <result property="createtime" column="createtime" />
+            <result property="hotelname" column="hotelname" />
+            <result property="address" column="address" />
+            <result property="cityname" column="cityname" />
+            <result property="cityid" column="cityid" />
+            <result property="ecityid" column="ecityid" />
+            <result property="telphone" column="telphone" />
+            <result property="eid" column="eid" />
+            <result property="pinyin" column="pinyin" />
+            <result property="py" column="py" />
+            <result property="lat" column="lat" />
+            <result property="lng" column="lng" />
+            <result property="jingliname" column="jingliname" />
+            <result property="jinglitel" column="jinglitel" />
+            <result property="bak" column="bak" />
+            <result property="curuserid" column="curuserid" />
+            <result property="updatetime" column="updatetime" />
+            <result property="status" column="status" />
+            <result property="zid" column="zid" />
+            <result property="timerday" column="timerday" />
+            <result property="timer" column="timer" />
+            <result property="createtimelost" column="createtimelost" />
+            <result property="source" column="source" />
+            <result property="price" column="price" />
+            <result property="syncxdj" column="syncxdj" />
+            <result property="trace" column="trace" />
+            <result property="youzouid" column="youzouid" />
+            <result property="ordercount" column="ordercount" />
+            <result property="ordercanclecount" column="ordercanclecount" />
+            <result property="ordercountupdate" column="ordercountupdate" />
+            <result property="hsource" column="hsource" />
+            <result property="sellstatus" column="sellstatus" />
+            <result property="viewcount" column="viewcount" />
+            <result property="viewcountuptime" column="viewcountuptime" />
+            <result property="viewcountorder" column="viewcountorder" />
+        <result property="isUpdate" column="is_update" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,userid,hide,userpid,createtime,hotelname,
+        address,cityname,cityid,ecityid,telphone,
+        eid,pinyin,py,lat,lng,
+        jingliname,jinglitel,bak,curuserid,updatetime,
+        status,zid,timerday,timer,createtimelost,
+        source,price,syncxdj,trace,youzouid,
+        ordercount,ordercanclecount,ordercountupdate,hsource,sellstatus,
+        viewcount,viewcountuptime,viewcountorder,is_update
+    </sql>
+</mapper>
