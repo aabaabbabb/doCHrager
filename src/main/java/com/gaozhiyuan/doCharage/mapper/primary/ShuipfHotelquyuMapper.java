@@ -17,6 +17,8 @@ public interface ShuipfHotelquyuMapper extends BaseMapper<ShuipfHotelquyu> {
     List<ShuipfHotelquyu> selectByIsUpdateAndIsImportAndEidIsNotNull(@Param("isUpdate") Integer isUpdate, @Param("isImport") Integer isImport);
 
     int updateIsImportById(@Param("isImport") Integer isImport, @Param("id") Integer id);
+
+    List<ShuipfHotelquyu> selectByIsImport(@Param("isImport") Integer isImport);
 }
 
 

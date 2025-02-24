@@ -38,6 +38,8 @@ public interface XdHotelMapper extends BaseMapper<XdHotel> {
     );
 
     int updateIsOpenXdjById(@Param("isOpenXdj") Object isOpenXdj, @Param("id") Integer id);
+
+    int updateIsOpenXdjAndActivationTimeById(@Param("isOpenXdj") Object isOpenXdj, @Param("activationTime") Integer activationTime, @Param("id") Integer id);
 }
 
 

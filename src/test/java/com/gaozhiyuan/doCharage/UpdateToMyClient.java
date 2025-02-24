@@ -28,9 +28,13 @@ public class UpdateToMyClient {
     @Autowired
     XdTeamMapper xdTeamMapper;
 
+    @Autowired
+    ShuipfHotelquyuGdHotelMapper shuipfHotelquyuGdHotelMapper;
+
     @Test
     public void toUpdate() {
         List<ShuipfHotelquyu>  shuipfHotelquyuList = outputData();
+        //List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = gaoDeData();
         log.info("更新条数：{}", shuipfHotelquyuList.size());
         log.info("开始更新");
         selectData(shuipfHotelquyuList);
@@ -38,35 +42,43 @@ public class UpdateToMyClient {
     }
 
     private List<ShuipfHotelquyu> outputData() {
-        List<ShuipfHotelquyu> shuipfHotelquyuList = shuipfHotelquyuMapper.selectByIsUpdateAndIsImportAndEidIsNotNull(1,0);
+        List<ShuipfHotelquyu> shuipfHotelquyuList = shuipfHotelquyuMapper.selectByIsImport(0);
         return shuipfHotelquyuList;
     }
 
-    public boolean selectData(List<ShuipfHotelquyu> shuipfHotelquyuList){
+    private List<ShuipfHotelquyuGdHotel> gaoDeData(){
+        List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = shuipfHotelquyuGdHotelMapper.selectByUpdatetimeBetweenAndIsUpdate(1735660800,1740369600, 0);
+        return shuipfHotelquyuGdHotels;
+    }
+
+//    public boolean selectData(List<ShuipfHotelquyu> shuipfHotelquyuList){
+public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
         int count = 1;
         for (ShuipfHotelquyu shuipfHotelquyu : shuipfHotelquyuList){
             List<XdMyClient> XdMyClientList = new ArrayList<>();
             Integer uuid = shuipfHotelquyu.getId();
             Integer userid = shuipfHotelquyu.getCuruserid();
             String hotelname = shuipfHotelquyu.getHotelname();
+            log.info("第{}条------hotelname是：{}，开始执行",count,hotelname);
             Integer createtime  = shuipfHotelquyu.getCreatetime();
-            String eid = shuipfHotelquyu.getEid();
+            String eid = shuipfHotelquyu.getEid().equals("") ? "0" : shuipfHotelquyu.getEid();
             Integer elongid = Integer.valueOf(eid);
             Integer cid = shuipfHotelquyu.getUserpid();
+
             if(cid == 0){
                 cid =453;
             }
-            if(userid == 0||userid==1){
-                shuipfHotelquyuMapper.updateIsImportById(1,uuid);
+            if(userid == 0||userid==1||userid==494||elongid==0){
                 if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，userid为空更新状态成功，进入下一条",count,eid,eid);
                 }
                 count++;
                 continue;
+            } else if (userid == 31) {
+                userid =445118;
             }
             XdAdmin user = xdAdminMapper.selectById(userid);
             if (user == null) {
-                shuipfHotelquyuMapper.updateIsImportById(1,uuid);
                 if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，user为空更新状态成功，进入下一条",count,eid,eid);
                 }
@@ -75,7 +87,6 @@ public class UpdateToMyClient {
             }
             XdTeam xdTeam = xdTeamMapper.selectById(user.getTid());
             if (xdTeam == null) {
-                shuipfHotelquyuMapper.updateIsImportById(1,uuid);
                 if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，Team更新状态成功，进入下一条",count,eid,eid);
                 }
@@ -84,8 +95,22 @@ public class UpdateToMyClient {
             }
             XdHotel xdHotel = xdHotelMapper.selectByEid(eid);
             if(xdHotel == null){
-                xdHotel = new XdHotel();
-                xdHotel.setId(2025021400);
+                if(eid.equals("26547874")){
+                    xdHotel = new XdHotel();
+                    xdHotel.setId(26547874);
+                    xdHotel.setName("望屿听海民宿");
+                }else if(eid.equals("5141004")){
+                    xdHotel = new XdHotel();
+                    xdHotel.setId(5141004);
+                    xdHotel.setName("厦门泛太平洋大酒店");
+                }else{
+                    log.info("酒店名称：{}---eid：{}我联系的客户---有值，进行下一条", hotelname, eid);
+                    if (shuipfHotelquyuMapper.updateIsImportById(1, uuid) > 0) {
+                        log.info("第{}条------eid为：{}，更新状态成功，进入下一条", count, eid);
+                    }
+                    count++;
+                    continue;
+                }
             }
             XdMyClient xdMyClients = xdMyClientMapper.selectByHidAndPid(xdHotel.getId(), xdTeam.getProjId());
             if (xdMyClients != null) {

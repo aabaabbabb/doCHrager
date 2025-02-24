@@ -57,4 +57,25 @@
         ordercount,ordercanclecount,ordercountupdate,hsource,sellstatus,
         viewcount,viewcountuptime,viewcountorder,is_update
     </sql>
+    <select id="selectByUpdatetimeAndIsUpdate" resultMap="BaseResultMap">
+        select
+            id,userid,userpid,createtime,hotelname,eid,jingliname,jinglitel,updatetime,is_update
+        from shuipf_hotelquyu_gd_hotel
+        where
+        updatetime = #{updatetime,jdbcType=NUMERIC}
+        AND is_update = #{isUpdate,jdbcType=NUMERIC}
+    </select>
+    <select id="selectByUpdatetimeBetweenAndIsUpdate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shuipf_hotelquyu_gd_hotel
+        where
+        updatetime between #{beginUpdatetime,jdbcType=NUMERIC} and #{endUpdatetime,jdbcType=NUMERIC}
+        AND is_update = #{isUpdate,jdbcType=NUMERIC}
+    </select>
+    <update id="updateIsUpdateById">
+        update shuipf_hotelquyu_gd_hotel
+        set is_update = #{isUpdate,jdbcType=NUMERIC}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

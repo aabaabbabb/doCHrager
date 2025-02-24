@@ -65,4 +65,12 @@
         set is_Import = #{isImport,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
+    <select id="selectByIsImport" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from shuipf_hotelquyu
+        where
+        is_Import = #{isImport,jdbcType=NUMERIC}
+        AND eid is not null
+    </select>
 </mapper>

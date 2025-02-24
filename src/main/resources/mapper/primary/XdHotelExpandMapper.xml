@@ -61,4 +61,13 @@
         where
         hid = #{hid,jdbcType=NUMERIC}
     </select>
+    <update id="updateAidAndAdjustmentModeAndConfirmaModeAndGidAndExpandBrokerageById">
+        update xd_hotel_expand
+        set aid              = #{aid,jdbcType=NUMERIC},
+            adjustment_mode  = #{adjustmentMode},
+            confirma_mode    = #{confirmaMode},
+            gid              = #{gid,jdbcType=NUMERIC},
+            expand_brokerage = #{expandBrokerage}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

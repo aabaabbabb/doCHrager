@@ -1,4 +1,5 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import java.math.BigDecimal;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface XdHotelExpandMapper extends BaseMapper<XdHotelExpand> {
     XdHotelExpand selectByHid(@Param("hid") Long hid);
+
+    int updateAidAndAdjustmentModeAndConfirmaModeAndGidAndExpandBrokerageById(@Param("aid") Integer aid, @Param("adjustmentMode") Object adjustmentMode, @Param("confirmaMode") Object confirmaMode, @Param("gid") Long gid, @Param("expandBrokerage") BigDecimal expandBrokerage, @Param("id") Integer id);
 }
 
 

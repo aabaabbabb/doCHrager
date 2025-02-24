@@ -132,11 +132,18 @@
         where
         tmp = #{tmp,jdbcType=NUMERIC}
         AND is_update = #{is_update,jdbcType=NUMERIC}
+        order by id desc
         LIMIT #{offset}, #{limit}
     </select>
     <update id="updateIsOpenXdjById">
         update xd_hotel
         set is_open_xdj = #{isOpenXdj}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+    <update id="updateIsOpenXdjAndActivationTimeById">
+        update xd_hotel
+        set is_open_xdj     = #{isOpenXdj},
+            activation_time = #{activationTime,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
 </mapper>

@@ -28,7 +28,7 @@ public class ZoneUpdateTest {
             log.info("----------------------进入第{}页---------------------------", i);
             int offset = i;
             int limit = (i + 1) * 100000;
-            List<XdHotel> xdHotels = xdHotelMapper.selectByTmpAndHotelStarId(1,0, offset, limit);
+            List<XdHotel> xdHotels = xdHotelMapper.selectByTmpAndHotelStarId(0,0, offset, limit);
             if (xdHotels.size()==0) {
                 log.info("----------------------第{}页数据为空---------------------------", i);
                 continue;

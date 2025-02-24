@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.GdHotelMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.GdHotel">
+            <id property="id" column="id" />
+            <result property="tailnum" column="Tailnum" />
+            <result property="elongid" column="ElongId" />
+            <result property="hotelname" column="HotelName" />
+            <result property="hotelstatus" column="HotelStatus" />
+            <result property="starrate" column="StarRate" />
+            <result property="category" column="Category" />
+            <result property="phone" column="Phone" />
+            <result property="brandname" column="BrandName" />
+            <result property="gaodelat" column="GaodeLat" />
+            <result property="gaodelon" column="GaodeLon" />
+            <result property="baidulat" column="BaiduLat" />
+            <result property="baidulon" column="BaiduLon" />
+            <result property="cityid" column="CityId" />
+            <result property="cityname" column="CityName" />
+            <result property="roomtotalamount" column="RoomTotalAmount" />
+            <result property="address" column="Address" />
+            <result property="hoteltype" column="HotelType" />
+            <result property="elongidstr" column="ElongIdStr" />
+            <result property="userid" column="userid" />
+            <result property="userpid" column="userpid" />
+            <result property="dltel" column="dltel" />
+            <result property="dlname" column="dlname" />
+            <result property="down" column="down" />
+            <result property="noroom" column="noroom" />
+            <result property="commissionRate" column="commission_rate" />
+            <result property="contactName" column="contact_name" />
+            <result property="contactPhone" column="contact_phone" />
+            <result property="invoicemode" column="InvoiceMode" />
+            <result property="source" column="source" />
+            <result property="offline" column="offline" />
+            <result property="baiduid" column="baiduid" />
+            <result property="created" column="created" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,Tailnum,ElongId,HotelName,HotelStatus,StarRate,
+        Category,Phone,BrandName,GaodeLat,GaodeLon,
+        BaiduLat,BaiduLon,CityId,CityName,RoomTotalAmount,
+        Address,HotelType,ElongIdStr,userid,userpid,
+        dltel,dlname,down,noroom,commission_rate,
+        contact_name,contact_phone,InvoiceMode,source,offline,
+        baiduid,created
+    </sql>
+</mapper>
