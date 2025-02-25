@@ -31,4 +31,9 @@
         status,memo,is_delete,create_time,alter_time,
         verify,face
     </sql>
+    <update id="updatePasswordById">
+        update xd_admin
+        set password = #{password,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
 </mapper>

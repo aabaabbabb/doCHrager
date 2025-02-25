@@ -1,4 +1,5 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import org.apache.ibatis.annotations.Param;
 
 import com.gaozhiyuan.doCharage.model.XdAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.gaozhiyuan.doCharage.model.XdAdmin
 */
 public interface XdAdminMapper extends BaseMapper<XdAdmin> {
-
+    int updatePasswordById(@Param("password") String password, @Param("id") Integer id);
 }
 
 
