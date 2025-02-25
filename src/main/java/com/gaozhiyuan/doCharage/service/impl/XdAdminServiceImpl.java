@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author Administrator
 * @description 针对表【xd_admin(后台用户表)】的数据库操作Service实现
-* @createDate 2025-02-14 16:49:32
+* @createDate 2025-02-25 09:30:34
 */
 @Service
 public class XdAdminServiceImpl extends ServiceImpl<XdAdminMapper, XdAdmin>

@@ -31,11 +31,4 @@
         status,memo,is_delete,create_time,alter_time,
         verify,face
     </sql>
-    <select id="selectById" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from xd_admin
-        where
-        id = #{id,jdbcType=NUMERIC}
-    </select>
 </mapper>
