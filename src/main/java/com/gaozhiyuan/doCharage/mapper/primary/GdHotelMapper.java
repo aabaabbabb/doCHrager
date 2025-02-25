@@ -1,4 +1,5 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
+import java.util.List;
 
 import com.gaozhiyuan.doCharage.model.GdHotel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.gaozhiyuan.doCharage.model.GdHotel
 */
 public interface GdHotelMapper extends BaseMapper<GdHotel> {
-
+    List<GdHotel> selectALl();
 }
 
 

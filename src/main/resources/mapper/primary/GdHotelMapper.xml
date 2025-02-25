@@ -49,4 +49,20 @@
         contact_name,contact_phone,InvoiceMode,source,offline,
         baiduid,created
     </sql>
+    <select id="selectALl" resultMap="BaseResultMap">
+        select
+            ElongId,HotelName,userid,userpid,dltel,dlname
+        from gd_hotel
+        WHERE dltel != ''
+        AND dltel != 18610108655
+        AND dltel != 15237958882
+        and dltel != 18581610608
+        AND userid != 0
+        and dltel != 18688860156
+        and dltel != 18618403183
+        and userid != 0
+        order BY
+        userid DESC
+
+    </select>
 </mapper>

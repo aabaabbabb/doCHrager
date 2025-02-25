@@ -29,7 +29,7 @@ public class GdHotel {
     /**
      * 艺龙酒店id
      */
-    private Integer elongid;
+    private String elongid;
 
     /**
      * 酒店中文名称
