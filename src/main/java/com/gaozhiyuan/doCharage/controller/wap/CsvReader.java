@@ -13,8 +13,7 @@ public class CsvReader {
     LcElongHotelsService lcElongHotelsService;
 
     public void processCsvFiles() {
-        LcElongHotels lcElongHotels = new LcElongHotels();
-        lcElongHotels =  lcElongHotelsService.getById("53");
+        LcElongHotels lcElongHotels =  lcElongHotelsService.getById("53");
         System.out.println(lcElongHotels);
 
     }

@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * 员工酒店关系表
- * @TableName gd_ebooking_employee_hotel
+ * gd_ebooking_employee_hotel
  */
 @TableName(value ="gd_ebooking_employee_hotel")
 @Data

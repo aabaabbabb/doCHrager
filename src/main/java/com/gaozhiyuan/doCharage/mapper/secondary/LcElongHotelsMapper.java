@@ -11,8 +11,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2025-02-13 09:25:25
 * @Entity com.gaozhiyuan.doCharage.domain.LcElongHotels
 */
-public interface LcElongHotelsMapper extends BaseMapper<LcElongHotels> {
-  public  List<LcElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
+interface LcElongHotelsMapper extends BaseMapper<LcElongHotels> {
+  List<LcElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
 
   List<LcElongHotels> selectById(@Param("id") String id);
 }
