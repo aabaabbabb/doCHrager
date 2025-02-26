@@ -29,8 +29,7 @@ public class XdMyClientServiceImpl extends ServiceImpl<XdMyClientMapper, XdMyCli
 
     @Override
     public boolean insertAll(XdMyClient xdMyClient) {
-        boolean boo = this.save(xdMyClient);
-        return boo;
+        return this.save(xdMyClient);
     }
 }
 
