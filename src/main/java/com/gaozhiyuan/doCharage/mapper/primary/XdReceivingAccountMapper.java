@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.gaozhiyuan.doCharage.model.XdReceivingAccount;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.mybatis.spring.annotation.MapperScan;
 
 /**
 * @author Administrator

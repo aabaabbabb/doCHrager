@@ -1,5 +1,4 @@
 package com.gaozhiyuan.doCharage.mapper.primary;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.gaozhiyuan.doCharage.model.GdEbookingHotels;
