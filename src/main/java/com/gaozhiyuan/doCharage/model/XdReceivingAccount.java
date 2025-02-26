@@ -7,7 +7,7 @@ import lombok.*;
 
 /**
  * 收款账户表
- * @TableName xd_receiving_account
+ * xd_receiving_account
  */
 @TableName(value ="xd_receiving_account")
 /**

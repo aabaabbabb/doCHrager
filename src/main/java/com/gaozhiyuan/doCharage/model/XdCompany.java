@@ -1,7 +1,7 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * 公司管理表
- * @TableName xd_company
+ * xd_company
  */
 @TableName(value ="xd_company")
 @Data

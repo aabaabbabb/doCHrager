@@ -1,14 +1,13 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 
- * @TableName shuipf_hotelquyu_gd_hotel_yeji
+ * shuipf_hotelquyu_gd_hotel_yeji
  */
 @TableName(value ="shuipf_hotelquyu_gd_hotel_yeji")
 @Data

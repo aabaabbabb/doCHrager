@@ -1,14 +1,14 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 我联系的客户
- * @TableName xd_my_client
+ * xd_my_client
  */
 @TableName(value ="xd_my_client")
 @Data

@@ -1,14 +1,13 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 后台用户表
- * @TableName xd_admin
+ * xd_admin
  */
 @TableName(value ="xd_admin")
 @Data

@@ -1,14 +1,14 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 
- * @TableName xd_zoo_table
+ * xd_zoo_table
  */
 @TableName(value ="xd_zoo_table")
 @Data
