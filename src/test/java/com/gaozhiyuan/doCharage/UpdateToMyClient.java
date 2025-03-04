@@ -33,11 +33,11 @@ public class UpdateToMyClient {
 
     @Test
     public void toUpdate() {
-        List<ShuipfHotelquyu>  shuipfHotelquyuList = outputData();
-        //List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = gaoDeData();
-        log.info("更新条数：{}", shuipfHotelquyuList.size());
+        //List<ShuipfHotelquyu>  shuipfHotelquyuList = outputData();
+        List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = gaoDeData();
+        log.info("更新条数：{}", shuipfHotelquyuGdHotels.size());
         log.info("开始更新");
-        selectData(shuipfHotelquyuList);
+        selectData(shuipfHotelquyuGdHotels);
         log.info("更新结束");
     }
 
@@ -47,29 +47,36 @@ public class UpdateToMyClient {
     }
 
     private List<ShuipfHotelquyuGdHotel> gaoDeData(){
-        List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = shuipfHotelquyuGdHotelMapper.selectByUpdatetimeBetweenAndIsUpdate(1735660800,1740369600, 0);
+        List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels = shuipfHotelquyuGdHotelMapper.selectByUpdatetimeBetweenAndIsUpdate(1740369600, 1740992400, 0);
         return shuipfHotelquyuGdHotels;
     }
 
 //    public boolean selectData(List<ShuipfHotelquyu> shuipfHotelquyuList){
-public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
+public boolean selectData(List<ShuipfHotelquyuGdHotel> shuipfHotelquyuGdHotels){
         int count = 1;
-        for (ShuipfHotelquyu shuipfHotelquyu : shuipfHotelquyuList){
+        for (ShuipfHotelquyuGdHotel shuipfHotelquyuGdHotel : shuipfHotelquyuGdHotels){
             List<XdMyClient> XdMyClientList = new ArrayList<>();
-            Integer uuid = shuipfHotelquyu.getId();
-            Integer userid = shuipfHotelquyu.getCuruserid();
-            String hotelname = shuipfHotelquyu.getHotelname();
+            Integer uuid = shuipfHotelquyuGdHotel.getId();
+            Integer userid = shuipfHotelquyuGdHotel.getCuruserid();
+            String hotelname = shuipfHotelquyuGdHotel.getHotelname();
             log.info("第{}条------hotelname是：{}，开始执行",count,hotelname);
-            Integer createtime  = shuipfHotelquyu.getCreatetime();
-            String eid = shuipfHotelquyu.getEid().equals("") ? "0" : shuipfHotelquyu.getEid();
+            Integer createtime  = shuipfHotelquyuGdHotel.getCreatetime();
+            String eid = shuipfHotelquyuGdHotel.getEid().equals("") ? "0" : shuipfHotelquyuGdHotel.getEid();
+            if (eid.equals("amap")){
+                if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1,uuid) >0){
+                    log.info("第{}条---eid：{}---eid为：{}，userid为空更新状态成功，进入下一条",count,eid,eid);
+                }
+                count++;
+                continue;
+            }
             Integer elongid = Integer.valueOf(eid);
-            Integer cid = shuipfHotelquyu.getUserpid();
+            Integer cid = shuipfHotelquyuGdHotel.getUserpid();
 
             if(cid == 0){
                 cid =453;
             }
             if(userid == 0||userid==1||userid==494||elongid==0){
-                if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
+                if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，userid为空更新状态成功，进入下一条",count,eid,eid);
                 }
                 count++;
@@ -79,7 +86,7 @@ public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
             }
             XdAdmin user = xdAdminMapper.selectById(userid);
             if (user == null) {
-                if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
+                if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，user为空更新状态成功，进入下一条",count,eid,eid);
                 }
                 count++;
@@ -87,7 +94,7 @@ public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
             }
             XdTeam xdTeam = xdTeamMapper.selectById(user.getTid());
             if (xdTeam == null) {
-                if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
+                if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1,uuid) >0){
                     log.info("第{}条---eid：{}---eid为：{}，Team更新状态成功，进入下一条",count,eid,eid);
                 }
                 count++;
@@ -105,25 +112,26 @@ public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
                     xdHotel.setName("厦门泛太平洋大酒店");
                 }else{
                     log.info("酒店名称：{}---eid：{}我联系的客户---有值，进行下一条", hotelname, eid);
-                    if (shuipfHotelquyuMapper.updateIsImportById(1, uuid) > 0) {
+                    if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1, uuid) > 0) {
                         log.info("第{}条------eid为：{}，更新状态成功，进入下一条", count, eid);
                     }
                     count++;
                     continue;
                 }
             }
+            System.out.println("xdHotel.getId():"+xdHotel.getId()+"--userid--"+userid+"-xdTeam.getProjId():"+xdTeam.getProjId());
             XdMyClient xdMyClients = xdMyClientMapper.selectByHidAndPid(xdHotel.getId(), xdTeam.getProjId());
             if (xdMyClients != null) {
                 log.info("酒店名称：{}---eid：{}我联系的客户---有值，进行下一条",hotelname,eid);
-                if (shuipfHotelquyuMapper.updateIsImportById(1,uuid) >0){
+                if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1,uuid) >0){
                     log.info("第{}条------eid为：{}，更新状态成功，进入下一条",count,eid);
                 }
                 count++;
                 continue;
             }
             log.info("第{}条---酒店名称：{}---eid：{}---开始运行",count,hotelname,eid);
-            xdHotel.setContactName(shuipfHotelquyu.getJingliname() == null ? null : shuipfHotelquyu.getJingliname());
-            xdHotel.setContactPhone(shuipfHotelquyu.getJinglitel() == null ? null : shuipfHotelquyu.getJinglitel());
+            xdHotel.setContactName(shuipfHotelquyuGdHotel.getJingliname() == null ? null : shuipfHotelquyuGdHotel.getJingliname());
+            xdHotel.setContactPhone(shuipfHotelquyuGdHotel.getJinglitel() == null ? null : shuipfHotelquyuGdHotel.getJinglitel());
             log.info("酒店名称：{}---eid：{}酒店经理和电话信息开始更新",hotelname,eid);
             xdHotelMapper.updateContactNameAndContactPhoneById(xdHotel.getContactName(), xdHotel.getContactPhone(), xdHotel.getId());
             log.info("酒店名称：{}---eid：{}酒店经理和电话信息更新完毕",hotelname,eid);
@@ -144,14 +152,14 @@ public boolean selectData(List<ShuipfHotelquyu>  shuipfHotelquyuList){
             xdMyClient.setLastFid(0);
             xdMyClient.setDealTime(0);
             xdMyClient.setCreateTime(createtime);
-            xdMyClient.setAlterTime(shuipfHotelquyu.getUpdatetime());
+            xdMyClient.setAlterTime(shuipfHotelquyuGdHotel.getUpdatetime());
             xdMyClient.setOutTime(0);
             log.info("表中无值可以插入--酒店名称：{}---eid：{}我联系的客户---开始插入", hotelname, eid);
             XdMyClientList.add(xdMyClient);
             log.info("开始插入");
             xdMyClientMapper.insertAll(XdMyClientList);
             log.info("插入完毕");
-            if (shuipfHotelquyuMapper.updateIsImportById(1, uuid) > 0) {
+            if (shuipfHotelquyuGdHotelMapper.updateIsUpdateById(1, uuid) > 0) {
                 log.info("第{}条---酒店名称：{}---eid：{}---运行结束，进行下一条", count, hotelname, eid);
             }
             count++;

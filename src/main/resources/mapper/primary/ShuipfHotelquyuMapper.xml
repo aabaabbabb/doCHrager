@@ -72,5 +72,6 @@
         where
         is_Import = #{isImport,jdbcType=NUMERIC}
         AND eid is not null
+        AND updatetime >= '1740369600'
     </select>
 </mapper>

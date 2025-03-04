@@ -36,4 +36,11 @@
         set password = #{password,jdbcType=VARCHAR}
         where id = #{id,jdbcType=NUMERIC}
     </update>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_admin
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
 </mapper>
