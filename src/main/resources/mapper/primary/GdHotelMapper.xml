@@ -65,4 +65,11 @@
         userid DESC
 
     </select>
+    <select id="selectOneByElongid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from gd_hotel
+        where
+        ElongId = #{elongid,jdbcType=VARCHAR}
+    </select>
 </mapper>

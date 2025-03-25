@@ -44,7 +44,7 @@
             <result property="viewcount" column="viewcount" />
             <result property="viewcountuptime" column="viewcountuptime" />
             <result property="viewcountorder" column="viewcountorder" />
-        <result property="isUpdate" column="is_update" />
+            <result property="isUpdate" column="is_update" />
     </resultMap>
 
     <sql id="Base_Column_List">

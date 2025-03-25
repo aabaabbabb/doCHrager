@@ -54,6 +54,18 @@
         hotel_operator,balance,dlid,is_dialog,is_sound_prompt,
         memo
     </sql>
+    <insert id="insertAll" parameterType="java.util.List">
+        INSERT INTO xd_hotel_expand (
+        hid,tcid,sid,bid,xid,gid,fid,dlid,aid,tid,operator_id,create_time,alter_time,balance
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.hid},#{item.tcid}, #{item.sid}, #{item.bid},#{item.xid}, #{item.gid},
+            #{item.fid}, #{item.dlid}, #{item.aid}, #{item.tid},#{item.operatorId},#{item.createTime},#{item.alterTime},#{item.balance}
+            )
+        </foreach>
+    </insert>
     <select id="selectByHid" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -64,10 +76,8 @@
     <update id="updateAidAndAdjustmentModeAndConfirmaModeAndGidAndExpandBrokerageById">
         update xd_hotel_expand
         set aid              = #{aid,jdbcType=NUMERIC},
-            adjustment_mode  = #{adjustmentMode},
-            confirma_mode    = #{confirmaMode},
-            gid              = #{gid,jdbcType=NUMERIC},
-            expand_brokerage = #{expandBrokerage}
+            expand_brokerage = #{expandBrokerage},
+            tid              = #{tid,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
 </mapper>

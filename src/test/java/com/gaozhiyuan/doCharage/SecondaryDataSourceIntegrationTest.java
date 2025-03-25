@@ -1,31 +1,20 @@
 package com.gaozhiyuan.doCharage;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.gaozhiyuan.doCharage.mapper.primary.XdHotelMapper;
-import com.gaozhiyuan.doCharage.model.LcElongHotels;
-import com.gaozhiyuan.doCharage.model.XdHotel;
 import com.gaozhiyuan.doCharage.service.LcElongHotelsService;
 import com.gaozhiyuan.doCharage.service.XdHotelService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import lombok.val;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpRequest;
-import sun.net.www.http.HttpClient;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 public class SecondaryDataSourceIntegrationTest {

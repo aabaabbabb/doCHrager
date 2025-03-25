@@ -96,10 +96,8 @@ public class UpdateXdjHotelTest {
                             log.info("第{}条日志：设置XdHotelExpand的expandBrokerage: {}", logCounter, result);
                             if (xdHotelExpandMapper.updateAidAndAdjustmentModeAndConfirmaModeAndGidAndExpandBrokerageById(
                                     xdHotelExpand.getAid(),
-                                    xdHotelExpand.getAdjustmentMode(),
-                                    xdHotelExpand.getConfirmaMode(),
-                                    xdHotelExpand.getGid(),
                                     xdHotelExpand.getExpandBrokerage(),
+                                    xdHotelExpand.getTid(),
                                     xdHotelExpand.getId()
                             ) > 0) {
                                 log.info("第{}条日志：通过id更新XdHotelExpand成功: {}", logCounter, xdHotelExpand.getId());
