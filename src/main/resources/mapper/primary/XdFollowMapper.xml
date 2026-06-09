@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.XdFollowMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.XdFollow">
+            <id property="id" column="id" />
+            <result property="pid" column="pid" />
+            <result property="hid" column="hid" />
+            <result property="cid" column="cid" />
+            <result property="aid" column="aid" />
+            <result property="teamNames" column="team_names" />
+            <result property="followType" column="follow_type" />
+            <result property="status" column="status" />
+            <result property="intention" column="intention" />
+            <result property="contactName" column="contact_name" />
+            <result property="contactPhone" column="contact_phone" />
+            <result property="content" column="content" />
+            <result property="followWarnTime" column="follow_warn_time" />
+            <result property="isDelete" column="is_delete" />
+            <result property="isWarned" column="is_warned" />
+            <result property="createTime" column="create_time" />
+            <result property="alterTime" column="alter_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,pid,hid,cid,aid,team_names,
+        follow_type,status,intention,contact_name,contact_phone,
+        content,follow_warn_time,is_delete,is_warned,create_time,
+        alter_time
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_follow
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
+</mapper>

@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    primary:
+      jdbc-url: ${PRIMARY_DB_URL:jdbc:mysql://nice-6688.rwlb.rds.aliyuncs.com:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${PRIMARY_DB_USERNAME:nice_lexing}
+      password: ${PRIMARY_DB_PASSWORD:}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: ${PRIMARY_DB_POOL_SIZE:10}
+    secondary:
+      jdbc-url: ${SECONDARY_DB_URL:jdbc:mysql://81.70.247.104:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${SECONDARY_DB_USERNAME:nice}
+      password: ${SECONDARY_DB_PASSWORD:}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: ${SECONDARY_DB_POOL_SIZE:10}
+    book:
+      jdbc-url: ${BOOK_DB_URL:jdbc:mysql://122.114.58.185:3306/book?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${BOOK_DB_USERNAME:nice}
+      password: ${BOOK_DB_PASSWORD:KPenJrhhxDAMHHdj}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: ${BOOK_DB_POOL_SIZE:10}
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+logging:
+  level:
+    org.springframework: INFO
+
+elong:
+  api:
+    username: ${ELONG_API_USERNAME:}
+    app-key: ${ELONG_API_APP_KEY:}
+    secret-key: ${ELONG_API_SECRET_KEY:}
+    version: ${ELONG_API_VERSION:1.62}
+    local: ${ELONG_API_LOCAL:zh_CN}
+    format: ${ELONG_API_FORMAT:json}
+    prod-url: ${ELONG_API_PROD_URL:https://api.elong.com/rest}
+    timeout-seconds: ${ELONG_API_TIMEOUT_SECONDS:15}
+    connect-timeout-seconds: ${ELONG_API_CONNECT_TIMEOUT_SECONDS:5}
+

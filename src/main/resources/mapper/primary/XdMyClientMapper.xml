@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaozhiyuan.doCharage.mapper.primary.XdMyClientMapper">
+
+    <resultMap id="BaseResultMap" type="com.gaozhiyuan.doCharage.model.XdMyClient">
+            <id property="id" column="id" />
+            <result property="hid" column="hid" />
+            <result property="cid" column="cid" />
+            <result property="pid" column="pid" />
+            <result property="tid" column="tid" />
+            <result property="teamNames" column="team_names" />
+            <result property="aid" column="aid" />
+            <result property="status" column="status" />
+            <result property="type" column="type" />
+            <result property="importTime" column="import_time" />
+            <result property="outTime" column="out_time" />
+            <result property="privSeaTime" column="priv_sea_time" />
+            <result property="outPrivSeaTime" column="out_priv_sea_time" />
+            <result property="duration" column="duration" />
+            <result property="lastFid" column="last_fid" />
+            <result property="dealTime" column="deal_time" />
+            <result property="createTime" column="create_time" />
+            <result property="alterTime" column="alter_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,hid,cid,pid,tid,team_names,
+        aid,status,type,import_time,out_time,
+        priv_sea_time,out_priv_sea_time,duration,last_fid,deal_time,
+        create_time,alter_time
+    </sql>
+    <select id="selectByHid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from xd_my_client
+        where
+        hid = #{hid,jdbcType=NUMERIC}
+    </select>
+    <insert id="insertAll" parameterType="java.util.List">
+        INSERT INTO xd_my_client (
+        hid, cid, pid, tid, team_names,
+        aid, status, type, import_time, out_time,
+        priv_sea_time, out_priv_sea_time, duration, last_fid, deal_time,
+        create_time, alter_time
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.hid}, #{item.cid}, #{item.pid}, #{item.tid}, #{item.teamNames},
+            #{item.aid}, #{item.status}, #{item.type}, #{item.importTime}, #{item.outTime},
+            #{item.privSeaTime}, #{item.outPrivSeaTime}, #{item.duration}, #{item.lastFid}, #{item.dealTime},
+            #{item.createTime}, #{item.alterTime}
+            )
+        </foreach>
+    </insert>
+</mapper>

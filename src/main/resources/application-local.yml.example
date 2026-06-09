@@ -1,0 +1,28 @@
+﻿spring:
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://nice-6688.rwlb.rds.aliyuncs.com:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+      username: nice_lexing
+      password: change-me
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
+    secondary:
+      jdbc-url: jdbc:mysql://81.70.247.104:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+      username: nice
+      password: change-me
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        maximum-pool-size: 10
+
+elong:
+  api:
+    username: change-me
+    app-key: change-me
+    secret-key: change-me
+    version: 1.62
+    local: zh_CN
+    format: json
+    prod-url: https://api.elong.com/rest
+    timeout-seconds: 15
+    connect-timeout-seconds: 5
