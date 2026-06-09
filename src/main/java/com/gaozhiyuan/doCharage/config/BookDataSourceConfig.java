@@ -14,25 +14,24 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.gaozhiyuan.doCharage.mapper.tertiary", sqlSessionFactoryRef = "tertiarySqlSessionFactory")
-public class TertiaryDataSourceConfig {
-
-    @Bean(name = "tertiaryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.tertiary")
-    public DataSource secondaryDataSource() {
+@MapperScan(basePackages = "com.gaozhiyuan.doCharage.mapper.book", sqlSessionFactoryRef = "bookSqlSessionFactory")
+public class BookDataSourceConfig {
+    @Bean(name = "bookDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.book")
+    public DataSource bookDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name = "tertiarySqlSessionFactory")
-    public SqlSessionFactory tertiarySqlSessionFactory(@Qualifier("tertiaryDataSource") DataSource dataSource) throws Exception {
+    @Bean(name = "bookSqlSessionFactory")
+    public SqlSessionFactory bookSqlSessionFactory(@Qualifier("bookDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/tertiary/*.xml"));
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/book/*.xml"));
         return factoryBean.getObject();
     }
 
-    @Bean(name = "tertiaryTransactionManager")
-    public DataSourceTransactionManager tertiaryTransactionManager(@Qualifier("tertiaryDataSource") DataSource dataSource) {
+    @Bean(name = "bookTransactionManager")
+    public DataSourceTransactionManager bookTransactionManager(@Qualifier("bookDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 }

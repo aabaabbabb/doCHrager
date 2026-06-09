@@ -159,11 +159,4 @@
                 id = #{id,jdbcType=VARCHAR}
                 AND business_zone = #{businessZone,jdbcType=VARCHAR}
         </select>
-    <select id="selectById" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from lc_elong_hotels
-        where
-        id = #{id,jdbcType=VARCHAR}
-    </select>
 </mapper>

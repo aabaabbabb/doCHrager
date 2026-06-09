@@ -7,6 +7,8 @@ import com.gaozhiyuan.doCharage.mapper.primary.XdMyClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 
 /**
 * @author Administrator
@@ -27,7 +29,8 @@ public class XdMyClientServiceImpl extends ServiceImpl<XdMyClientMapper, XdMyCli
 
     @Override
     public boolean insertAll(XdMyClient xdMyClient) {
-        return this.save(xdMyClient);
+        boolean boo = this.save(xdMyClient);
+        return boo;
     }
 }
 

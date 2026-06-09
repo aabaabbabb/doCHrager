@@ -1,84 +1,47 @@
 spring:
   datasource:
-    # 数据库1配置
     primary:
-      jdbc-url: jdbc:mysql://rm-2zeusjfev51pejx51qogd.mysql.rds.aliyuncs.com:3306/xiaodianjia
-      username: gdaliroot
-      password: Xiaodianjia1122
+      jdbc-url: ${PRIMARY_DB_URL:jdbc:mysql://nice-6688.rwlb.rds.aliyuncs.com:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${PRIMARY_DB_USERNAME:nice_lexing}
+      password: ${PRIMARY_DB_PASSWORD:}
       driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:
-        connection-test-query: "SELECT 1"
-        maximum-pool-size: 10
-        minimum-idle: 5
-        connection-timeout: 30000 # 30秒
-        idle-timeout: 600000 # 10分钟
-        max-lifetime: 1800000 # 30分钟
-        pool-name: HikariPool-1
-        metrics-enabled: true
-        health-check-properties:
-          enabled: true
-
-    # 数据库2配置
+        maximum-pool-size: ${PRIMARY_DB_POOL_SIZE:10}
     secondary:
-      jdbc-url: jdbc:mysql://rm-2ze1xio717ak28796do.mysql.rds.aliyuncs.com:3306/meijia_com
-      username: meijia_online
-      password: Bj-Mj-20250115
+      jdbc-url: ${SECONDARY_DB_URL:jdbc:mysql://81.70.247.104:3306/nice?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${SECONDARY_DB_USERNAME:nice}
+      password: ${SECONDARY_DB_PASSWORD:}
       driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:
-        connection-test-query: "SELECT 1"
-        maximum-pool-size: 10
-        minimum-idle: 5
-        connection-timeout: 30000 # 30秒
-        idle-timeout: 600000 # 10分钟
-        max-lifetime: 1800000 # 30分钟
-        pool-name: HikariPool-1
-        metrics-enabled: true
-        health-check-properties:
-          enabled: true
-
-
-    # 数据库3配置
-    tertiary:
-      jdbc-url: jdbc:mysql://gd.tetuijiudian.cn:3306/gaode66
-      username: gaode22
-      password: Redbull2266_
+        maximum-pool-size: ${SECONDARY_DB_POOL_SIZE:10}
+    book:
+      jdbc-url: ${BOOK_DB_URL:jdbc:mysql://122.114.58.185:3306/book?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true}
+      username: ${BOOK_DB_USERNAME:nice}
+      password: ${BOOK_DB_PASSWORD:KPenJrhhxDAMHHdj}
       driver-class-name: com.mysql.cj.jdbc.Driver
       hikari:
-        connection-test-query: "SELECT 1"
-        maximum-pool-size: 10
-        minimum-idle: 5
-        connection-timeout: 30000 # 30秒
-        idle-timeout: 600000 # 10分钟
-        max-lifetime: 1800000 # 30分钟
-        pool-name: HikariPool-1
-        metrics-enabled: true
-        health-check-properties:
-          enabled: true
+        maximum-pool-size: ${BOOK_DB_POOL_SIZE:10}
 
-  # Mybatis Plus 配置
-  mybatis-plus:
-    configuration:
-      log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl # 使用 SLF4J 实现
-    global-config:
-      db-config:
-        logic-delete-value: 1
-        logic-not-delete-value: 0
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 logging:
-  # 设置全局日志级别
   level:
-    root: INFO
-    org.springframework.web: DEBUG
-    com.yourcompany: TRACE
+    org.springframework: INFO
 
-  # 设置日志输出格式（控制台）
-  pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+elong:
+  api:
+    username: ${ELONG_API_USERNAME:}
+    app-key: ${ELONG_API_APP_KEY:}
+    secret-key: ${ELONG_API_SECRET_KEY:}
+    version: ${ELONG_API_VERSION:1.62}
+    local: ${ELONG_API_LOCAL:zh_CN}
+    format: ${ELONG_API_FORMAT:json}
+    prod-url: ${ELONG_API_PROD_URL:https://api.elong.com/rest}
+    timeout-seconds: ${ELONG_API_TIMEOUT_SECONDS:15}
+    connect-timeout-seconds: ${ELONG_API_CONNECT_TIMEOUT_SECONDS:5}
 
-  # 设置日志文件输出路径、大小、保留历史文件数等
-  file:
-    name: 'logs/app.log'
-  logback:
-    rolling-policy:
-      file-name-pattern: 'logs/app-%d{yyyy-MM-dd}.log'
-      max-file-size: 10MB # 文件最大为10MB
-      max-history: 30 # 保留30天的历史日志

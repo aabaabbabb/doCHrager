@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hotelInfo")
-public class LcElongHotelsController {
+public class  LcElongHotelsController {
     @Autowired
     private LcElongHotelsService lcElongHotelsService;
     @Autowired

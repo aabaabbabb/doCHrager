@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * 
- * lc_elong_hotels
+ * @TableName lc_elong_hotels
  */
 @TableName(value ="lc_elong_hotels")
 @Data

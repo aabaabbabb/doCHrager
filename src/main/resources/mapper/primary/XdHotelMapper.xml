@@ -47,7 +47,6 @@
             <result property="dlid" column="dlid" />
             <result property="aid" column="aid" />
             <result property="tmp" column="tmp" />
-         <result property="isUpdate" column="is_update" />
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -59,7 +58,7 @@
         xc_score,el_score,create_time,alter_time,token,
         fax,expand_status,reception_phone,reception_phone_again,start_business_time,
         fitment_time,gd_qr_code,comment_total,dlid,aid,
-        tmp,is_update
+        tmp
     </sql>
     <select id="selectHotelBusinessIdAndTmpByHotelBusinessIdAndTmp" resultMap="BaseResultMap">
         select eid,zid,name,address,hotel_business_id, tmp
@@ -81,69 +80,15 @@
     </update>
     <select id="selectByEid" resultMap="BaseResultMap">
         select
-       id,eid,name,is_open_xdj
+        <include refid="Base_Column_List"/>
         from xd_hotel
         where
-        eid = #{eid,jdbcType=CHAR}
+        eid = #{eid,jdbcType=NUMERIC}
     </select>
     <update id="updateContactNameAndContactPhoneById">
         update xd_hotel
         set contact_name  = #{contactName,jdbcType=VARCHAR},
             contact_phone = #{contactPhone,jdbcType=VARCHAR}
-        where id = #{id,jdbcType=NUMERIC}
-    </update>
-    <select id="selectByHotelBusinessIdAndTmp" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from xd_hotel
-        where
-        hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
-        AND tmp = #{tmp,jdbcType=NUMERIC}
-    </select>
-    <update id="updateHotelBusinessIdById">
-        update xd_hotel
-        set hotel_business_id = #{hotelBusinessId,jdbcType=NUMERIC}
-        where id = #{id,jdbcType=NUMERIC}
-    </update>
-    <update id="updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById">
-        update xd_hotel
-        set hotel_business_id   = #{hotelBusinessId,jdbcType=NUMERIC},
-            hotel_category_id   = #{hotelCategoryId,jdbcType=VARCHAR},
-            hotel_brand_id      = #{hotelBrandId,jdbcType=NUMERIC},
-            hotel_star_id       = #{hotelStarId,jdbcType=NUMERIC},
-            start_business_time = #{startBusinessTime,jdbcType=VARCHAR},
-            fitment_time        = #{fitmentTime,jdbcType=VARCHAR},
-            eid = #{eid,jdbcType=VARCHAR},
-            city_id = #{city_id,jdbcType=VARCHAR},
-            is_update = #{is_update,jdbcType=NUMERIC}
-        where id = #{id,jdbcType=NUMERIC}
-    </update>
-    <select id="selectByTmp" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from xd_hotel
-        where
-        tmp = #{tmp,jdbcType=NUMERIC}
-    </select>
-    <select id="selectByTmpAndHotelStarId" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from xd_hotel
-        where
-        tmp = #{tmp,jdbcType=NUMERIC}
-        AND is_update = #{is_update,jdbcType=NUMERIC}
-        order by id desc
-        LIMIT #{offset}, #{limit}
-    </select>
-    <update id="updateIsOpenXdjById">
-        update xd_hotel
-        set is_open_xdj = #{isOpenXdj}
-        where id = #{id,jdbcType=NUMERIC}
-    </update>
-    <update id="updateIsOpenXdjAndActivationTimeById">
-        update xd_hotel
-        set is_open_xdj     = #{isOpenXdj},
-            activation_time = #{activationTime,jdbcType=NUMERIC}
         where id = #{id,jdbcType=NUMERIC}
     </update>
 </mapper>

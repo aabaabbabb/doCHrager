@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.gaozhiyuan.doCharage.model.LcElongHotels;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
 /**
 * @author Administrator
@@ -13,9 +12,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 * @Entity com.gaozhiyuan.doCharage.domain.LcElongHotels
 */
 public interface LcElongHotelsMapper extends BaseMapper<LcElongHotels> {
-  List<LcElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
-
-  List<LcElongHotels> selectById(@Param("id") String id);
+  public  List<LcElongHotels> selectByIdAndBusinessZone(@Param("id") String id, @Param("businessZone") String businessZone);
 }
 
 

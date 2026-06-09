@@ -18,28 +18,10 @@ public interface XdHotelMapper extends BaseMapper<XdHotel> {
 
     int updateZidByEid(@Param("zid") Integer zid, @Param("eid") Integer eid);
 
-    XdHotel selectByEid(@Param("eid") String eid);
+    XdHotel selectByEid(@Param("eid") Integer eid);
 
     int updateContactNameAndContactPhoneById(@Param("contactName") String contactName, @Param("contactPhone") String contactPhone, @Param("id") Integer id);
     //AndHotelStarIdAnd
-    List<XdHotel> selectByHotelBusinessIdAndTmp(@Param("hotelBusinessId") Integer hotelBusinessId, @Param("tmp") Integer tmp);
-
-    int updateHotelBusinessIdById(@Param("hotelBusinessId") Integer hotelBusinessId, @Param("id") Integer id);
-
-    int updateHotelBusinessIdAndHotelCategoryIdAndHotelBrandIdAndHotelStarIdAndStartBusinessTimeAndFitmentTimeById(@Param("hotelBusinessId") Integer hotelBusinessId, @Param("hotelCategoryId") String hotelCategoryId, @Param("hotelBrandId") Integer hotelBrandId, @Param("hotelStarId") Integer hotelStarId, @Param("startBusinessTime") String startBusinessTime, @Param("fitmentTime") String fitmentTime,@Param("eid") String eid,@Param("city_id") String city_id,@Param("is_update") Integer is_update, @Param("id") Integer id);
-
-    List<XdHotel> selectByTmp(@Param("tmp") Integer tmp);
-
-    List<XdHotel> selectByTmpAndHotelStarId(
-            @Param("tmp") Integer tmp,
-            @Param("is_update") Integer is_update,
-            @Param("offset") Integer offset,
-            @Param("limit") Integer limit
-    );
-
-    int updateIsOpenXdjById(@Param("isOpenXdj") Object isOpenXdj, @Param("id") Integer id);
-
-    int updateIsOpenXdjAndActivationTimeById(@Param("isOpenXdj") Object isOpenXdj, @Param("activationTime") Integer activationTime, @Param("id") Integer id);
 }
 
 

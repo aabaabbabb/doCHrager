@@ -14,8 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface XdMyClientMapper extends BaseMapper<XdMyClient> {
     XdMyClient selectByHid(@Param("hid") Integer hid);
     int insertAll(@Param("list") List<XdMyClient> list);
-
-    XdMyClient selectByHidAndPid(@Param("hid") Integer hid, @Param("pid") Integer pid);
 }
 
 

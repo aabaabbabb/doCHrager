@@ -1,7 +1,7 @@
 package com.gaozhiyuan.doCharage.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * 酒店基础表
- * xd_hotel
+ * @TableName xd_hotel
  */
 @TableName(value ="xd_hotel")
 @Data
@@ -23,7 +23,7 @@ public class XdHotel {
     /**
      * 艺龙id
      */
-    private String eid;
+    private Integer eid;
 
     /**
      * 住哪id
@@ -43,7 +43,7 @@ public class XdHotel {
     /**
      * 城市id
      */
-    private String cityId;
+    private Integer cityId;
 
     /**
      * 酒店电话
@@ -224,6 +224,4 @@ public class XdHotel {
      * 
      */
     private Integer tmp;
-
-    private Integer isUpdate;
 }

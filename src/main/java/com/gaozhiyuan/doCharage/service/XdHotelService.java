@@ -2,6 +2,7 @@ package com.gaozhiyuan.doCharage.service;
 
 import com.gaozhiyuan.doCharage.model.XdHotel;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

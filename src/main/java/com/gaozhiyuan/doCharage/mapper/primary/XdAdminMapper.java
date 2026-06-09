@@ -8,12 +8,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 /**
 * @author Administrator
 * @description 针对表【xd_admin(后台用户表)】的数据库操作Mapper
-* @createDate 2025-02-25 09:30:34
+* @createDate 2025-02-14 16:49:32
 * @Entity com.gaozhiyuan.doCharage.model.XdAdmin
 */
 public interface XdAdminMapper extends BaseMapper<XdAdmin> {
-    int updatePasswordById(@Param("password") String password, @Param("id") Integer id);
-
     XdAdmin selectById(@Param("id") Integer id);
 }
 
